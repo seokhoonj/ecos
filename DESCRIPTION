@@ -7,6 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "seokhoonj@gmail.com")
 Description: What the package does (one paragraph).
+Depends: R (>=3.5.2)
 License: MIT + file LICENSE
 Imports: RCurl, XML
 Encoding: UTF-8
