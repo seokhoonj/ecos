@@ -2,7 +2,7 @@
 % Please edit documentation in R/staticSearch.R
 \name{staticSearch}
 \alias{staticSearch}
-\title{A staticSearch Function}
+\title{staticSearch Function}
 \usage{
 staticSearch(key, stat_code, count, cycle, start, end, item_code)
 }
