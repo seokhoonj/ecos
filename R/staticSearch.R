@@ -6,7 +6,7 @@
 #' @examples
 #' df <- staticSearch(key = "sample", stat_code = "010Y002", cycle = "MM", start = "196001", end = "201812", item_code = "AAAA11")
 #' head(df)
-
+#' @export
 staticSearch <- function(key, stat_code, count, cycle, start, end, item_code) {
 	url <- URLencode(paste0("http://ecos.bok.or.kr/api/StatisticSearch/", key, 
 							"/xml/kr/1/1000/", stat_code, "/", cycle, "/", start, "/", end, "/", item_code, "/?/?/"))
