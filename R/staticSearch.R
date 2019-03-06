@@ -1,4 +1,4 @@
-#' A staticSearch Function
+#' staticSearch Function
 #'
 #' ECOS is the economy statistics (from Bank of Korea, http://ecos.bok.or.kr)
 #' @param you can get korea economy data through the api
