@@ -14,6 +14,7 @@ staticSearch(key, format, lang, count, stat_code, cycle, start_date,
 ECOS is the economy statistics (from Bank of Korea, http://ecos.bok.or.kr)
 }
 \examples{
+# basic
 df <- staticSearch()
 head(df)
 

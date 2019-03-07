@@ -4,7 +4,7 @@
 #' @param you can get korea economy data through the api
 #' @keywords ecos, staticSearch
 #' @examples
-#; # basic
+#' # basic
 #' df <- staticSearch()
 #' head(df)
 #' 
