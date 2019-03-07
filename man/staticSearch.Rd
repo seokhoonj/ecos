@@ -4,7 +4,8 @@
 \alias{staticSearch}
 \title{staticSearch Function}
 \usage{
-staticSearch(key, stat_code, count, cycle, start, end, item_code)
+staticSearch(key, format, lang, count, stat_code, cycle, start_date,
+  end_date, item_code)
 }
 \arguments{
 \item{you}{can get korea economy data through the api}
@@ -13,7 +14,7 @@ staticSearch(key, stat_code, count, cycle, start, end, item_code)
 ECOS is the economy statistics (from Bank of Korea, http://ecos.bok.or.kr)
 }
 \examples{
-df <- staticSearch(key = "sample", stat_code = "010Y002", cycle = "MM", start = "196001", end = "201812", item_code = "AAAA11")
+df <- staticSearch()
 head(df)
 }
 \keyword{ecos,}
