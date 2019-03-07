@@ -16,6 +16,10 @@ ECOS is the economy statistics (from Bank of Korea, http://ecos.bok.or.kr)
 \examples{
 df <- staticSearch()
 head(df)
+
+# stock index futures 
+df <- staticSearch(stat_code = "085Y007", item_code = "S25B")
+head(df)
 }
 \keyword{ecos,}
 \keyword{staticSearch}

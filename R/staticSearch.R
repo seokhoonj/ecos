@@ -4,7 +4,12 @@
 #' @param you can get korea economy data through the api
 #' @keywords ecos, staticSearch
 #' @examples
+#; # basic
 #' df <- staticSearch()
+#' head(df)
+#' 
+#' # stock index futures 
+#' df <- staticSearch(stat_code = "085Y007", item_code = "S25B")
 #' head(df)
 #' @export
 staticSearch <- function(key, format, lang, count, stat_code, cycle, start_date, end_date, item_code) {
