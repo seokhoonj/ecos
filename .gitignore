@@ -1,1 +1,4 @@
 *.bak
+*.Rhistory
+*.RData
+*.zip
