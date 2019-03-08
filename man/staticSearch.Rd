@@ -8,7 +8,7 @@ staticSearch(api_key, format, lang, count, stat_code, cycle, start_date,
   end_date, item_code)
 }
 \arguments{
-\item{api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code}{input parameter}
+\item{api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code}{input parameters}
 }
 \description{
 You can access economic statistics from Bank of Korea through the open API (http://ecos.bok.or.kr)
