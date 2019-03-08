@@ -1,4 +1,6 @@
 *.bak
+*.swp
 *.Rhistory
 *.RData
 *.zip
+
