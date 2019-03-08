@@ -4,14 +4,14 @@
 \alias{staticSearch}
 \title{staticSearch Function}
 \usage{
-staticSearch(key, format, lang, count, stat_code, cycle, start_date,
+staticSearch(api_key, format, lang, count, stat_code, cycle, start_date,
   end_date, item_code)
 }
 \arguments{
-\item{You}{can access economic statistics from Bank of Korea through the open API}
+\item{api_key, }{format, lang, count, stat_code, cycle, start_date, end_date, item_code input parameter}
 }
 \description{
-ECOS is the economic statistics from Bank of Korea (http://ecos.bok.or.kr)
+You can access economic statistics from Bank of Korea through the open API (http://ecos.bok.or.kr)
 }
 \examples{
 # basic
