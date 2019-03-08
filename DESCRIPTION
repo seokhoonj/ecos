@@ -1,14 +1,14 @@
 Package: ecos
-Title: Economic Statistics of Korea for R users
+Title: Economic Statistics from Bank of Korea for R users
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Seokhoon",
            family = "Joo",
            role = c("aut", "cre"),
            email = "seokhoonj@gmail.com")
-Description: What the package does (one paragraph).
+Description: You can access economic statistics from Bank of Korea through the open API 
 License: MIT + file LICENSE
-Imports: R (>= 3.5.2), RCurl, XML
+Imports: RCurl, jsonlite, XML
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

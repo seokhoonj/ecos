@@ -8,10 +8,10 @@ staticSearch(key, format, lang, count, stat_code, cycle, start_date,
   end_date, item_code)
 }
 \arguments{
-\item{you}{can get korea economy data through the api}
+\item{You}{can access economic statistics from Bank of Korea through the open API}
 }
 \description{
-ECOS is the economy statistics (from Bank of Korea, http://ecos.bok.or.kr)
+ECOS is the economic statistics from Bank of Korea (http://ecos.bok.or.kr)
 }
 \examples{
 # basic
