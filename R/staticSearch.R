@@ -1,8 +1,9 @@
 #' staticSearch Function
 #'
-#' ECOS is the economic statistics from Bank of Korea (http://ecos.bok.or.kr)
-#' @param You can access economic statistics from Bank of Korea through the open API 
+#' You can access economic statistics from Bank of Korea through the open API (http://ecos.bok.or.kr)
+#' @param api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code input parameter
 #' @keywords ecos, staticSearch
+#' @export
 #' @examples
 #' # basic
 #' df <- staticSearch()
@@ -11,11 +12,10 @@
 #' # stock index futures 
 #' df <- staticSearch(stat_code = "085Y007", item_code = "S25B")
 #' head(df)
-#' @export
-staticSearch <- function(key, format, lang, count, stat_code, cycle, start_date, end_date, item_code) {
+staticSearch <- function(api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code) {
 
-	if (missing(key))
-		key <- "LBVUDMTWICYRKCSJAYO6"
+	if (missing(api_key))
+		api_key <- "LBVUDMTWICYRKCSJAYO6"
 
 	if (missing(format))
 		format <- "json"
@@ -44,7 +44,7 @@ staticSearch <- function(key, format, lang, count, stat_code, cycle, start_date,
 	if (format == "json") {
 
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", 
-								 key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
+								 api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
 		html <- getURLContent(url)
 		json_all <- fromJSON(html)
 		cnt  <- json_all$StatisticSearch[[1]]
@@ -58,7 +58,7 @@ staticSearch <- function(key, format, lang, count, stat_code, cycle, start_date,
 	} else {
 
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", 
-								 key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
+								 api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
 		html <- getURLContent(url)
 		xml_all <- xmlParse(html)
 		xml_cnt <- xpathApply(xml_all, "//list_total_count")[[1]]
