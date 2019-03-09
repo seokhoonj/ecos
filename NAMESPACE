@@ -2,6 +2,7 @@
 
 export(keyStatList)
 export(statSearch)
+export(statTableList)
 
 import(RCurl)
 import(jsonlite)
