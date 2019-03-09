@@ -1,3 +1,13 @@
+#' keyStatisticList Function
+#'
+#' You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
+#' @param api_key,format,lang,count input parameters
+#' @keywords ecos, keyStatisticList 
+#' @export
+#' @examples
+#' # 100 Economic Statistics in Korea
+#' df <- keyStatisticList()
+#' head(df)
 keyStatisticList <- function(api_key, format, lang, count) {
 
 	if (missing(api_key))
