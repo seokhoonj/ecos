@@ -1,11 +1,11 @@
 #' statTableList Function
 #'
-#' You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
+#' You can access economic statistics from Bank of Korea through the OPEN API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
 #' @param api_key,format,lang,count input parameters
 #' @keywords ecos, statTableList 
 #' @export
 #' @examples
-#' # Statistics Table List 
+#' # Economic Statistics Table List from Bank of Korea through the OPEN API
 #' df <- statTableList()
 #' head(df)
 statTableList <- function(api_key, format, lang, count) {
