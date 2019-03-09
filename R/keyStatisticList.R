@@ -36,7 +36,6 @@ keyStatisticList <- function(api_key, format, lang, count) {
 
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/KeyStatisticList/%s/%s/%s/1/%s/",
 								 api_key, format, lang, count))
-
 		html <- getURLContent(url)
 		json_all <- fromJSON(html)
 		cnt <- json_all$KeyStatisticList$list_total_count
@@ -49,7 +48,7 @@ keyStatisticList <- function(api_key, format, lang, count) {
 
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/KeyStatisticList/%s/%s/%s/1/%s/",
 								 api_key, format, lang, count))
-
+		html <- getURLContent(url)
 		xml_all <- xmlParse(html)
 		xml_cnt <- xpathApply(xml_all, "//list_total_count")[[1]]
 		cnt <- as.integer(xmlToList(xml_cnt))
