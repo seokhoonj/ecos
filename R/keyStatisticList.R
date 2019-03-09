@@ -13,7 +13,7 @@ keyStatisticList <- function(api_key, format, lang, count) {
 	if (missing(api_key))
 		api_key <- "LBVUDMTWICYRKCSJAYO6"
 
-	if (misiing(format))
+	if (missing(format))
 		format <- "json"
 
 	if (missing(lang))
