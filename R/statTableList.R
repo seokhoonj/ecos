@@ -20,12 +20,7 @@ statTableList <- function(api_key, format, lang, count) {
 		lang <- "kr"
 
 	if (missing(count))
-		count <- 100
-
-		api_key <- "LBVUDMTWICYRKCSJAYO6"
-		format <- "json"
-		lang <- "kr"
-		count <- 100
+		count <- 1000 
 		
 	if (format == "json") {
 
