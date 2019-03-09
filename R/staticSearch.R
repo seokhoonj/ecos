@@ -55,7 +55,7 @@ staticSearch <- function(api_key, format, lang, count, stat_code, cycle, start_d
 		df$data_value <- as.numeric(df$data_value)
 		attr(df, "list_total_count") <- cnt 
 
-	} else if {
+	} else if (format == "xml") {
 
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", 
 								 api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
