@@ -1,27 +1,27 @@
-#' staticSearch Function
+#' statSearch Function
 #'
 #' You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
 #' @param api_key,format,lang,count,stat_code,cycle,start_date,end_date,item_code input parameters
-#' @keywords ecos, staticSearch
+#' @keywords ecos, statSearch
 #' @export
 #' @examples
 #' # basic
-#' df <- staticSearch()
+#' df <- statSearch()
 #' head(df)
 #' 
 #' # stock index futures 
-#' df <- staticSearch(stat_code = "085Y007", item_code = "S25B")
+#' df <- statSearch(stat_code = "085Y007", item_code = "S25B")
 #' head(df)
-staticSearch <- function(api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code) {
+statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code) {
 
 	if (missing(api_key))
-		api_key <- "LBVUDMTWICYRKCSJAYO6"
+		api_key <- "LBVUDMTWICYRKCSJAYO6" # instant code (to be deleted)
 
 	if (missing(format))
-		format <- "json"
+		format <- "json" # file format
 
 	if (missing(lang))
-		lang <- "kr"
+		lang <- "kr"     # en is second option
 
 	if (missing(count))
 		count <- 1000
@@ -30,7 +30,7 @@ staticSearch <- function(api_key, format, lang, count, stat_code, cycle, start_d
 		stat_code <- "010Y002"
 	
 	if (missing(cycle))
-		cycle <- "MM"
+		cycle <- "MM"	 # YY,QQ,MM,DD 
 
 	if (missing(start_date))
 		start_date <- "196001"
