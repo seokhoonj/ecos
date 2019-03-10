@@ -5,10 +5,10 @@
 #' @keywords ecos, statMeta 
 #' @export
 #' @examples
-#' # Economic Statistics Meta in Korea
+#' # Economic Statistics Meta from Bank of Korea through the OPEN API
 #' df <- statMeta()
 #' head(df)
-statMeta <- function(api_key, format, lang, count, data_name) {
+statMeta <- function(api_key, format, lang, count, meta) {
 
 	if (missing(api_key))
 		api_key <- "LBVUDMTWICYRKCSJAYO6"
@@ -28,7 +28,7 @@ statMeta <- function(api_key, format, lang, count, data_name) {
 	if (format == "json") {
 
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/",
-								 api_key, format, lang, count, data_name))
+								 api_key, format, lang, count, meta))
 		html <- getURLContent(url)
 		json_all <- fromJSON(html)
 		cnt <- json_all$StatisticMeta$list_total_count
@@ -39,7 +39,7 @@ statMeta <- function(api_key, format, lang, count, data_name) {
 	} else if (format == "xml") {
 
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/",
-								 api_key, format, lang, count, data_name))
+								 api_key, format, lang, count, meta))
 		html <- getURLContent(url)
 		xml_all <- xmlParse(html)
 		xml_cnt <- xpathApply(xml_all, "//list_total_count")[[1]]
