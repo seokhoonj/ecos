@@ -9,3 +9,4 @@ export(statTableList)
 import(RCurl)
 import(jsonlite)
 import(XML)
+
