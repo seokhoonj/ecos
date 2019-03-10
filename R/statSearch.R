@@ -43,14 +43,14 @@ statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_dat
 
 	if (format == "xml") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", 
-								 api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
 		html <- getURLContent(url)
 		xml_all <- xmlParse(html)
 		xml_cnt <- xpathApply(xml_all, "//list_total_count")[[1]]
 		cnt <- as.integer(xmlToList(xml_cnt))
 		xml_row <- xpathApply(xml_all, "//row") 
 		df <- xmlToDataFrame(xml_row, stringsAsFactors = FALSE)
+		df[] <- lapply(df, trimws)
 		names(df) <- tolower(names(df))
 		df$time <- as.Date(paste0(as.character(df$time), "01"), format = "%Y%m%d")
 		df$data_value <- as.numeric(df$data_value)
@@ -58,8 +58,7 @@ statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_dat
 
 	} else if (format == "json") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", 
-								 api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
 		html <- getURLContent(url)
 		json_all <- fromJSON(html)
 		cnt  <- json_all$StatisticSearch$list_total_count

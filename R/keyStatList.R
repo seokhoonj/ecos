@@ -40,9 +40,10 @@ keyStatList <- function(api_key, format, lang, count) {
 
 		} else {
 
-			xml_code <- xmlToList(xpathApply(xml_all, "//CODE")[[1]])
-			xml_msg  <- xmlToList(xpathApply(xml_all, "//MESSAGE")[[1]])
-			df <- paste0(xml_code, " (", xml_msg, ")")
+			code <- xmlToList(xpathApply(xml_all, "//CODE")[[1]])
+			msg  <- xmlToList(xpathApply(xml_all, "//MESSAGE")[[1]])
+
+			stop(paste0(code, "\n (", msg, ")"))
 
 		}
 
@@ -64,7 +65,8 @@ keyStatList <- function(api_key, format, lang, count) {
 
 			code <- json_all$RESULT$CODE	
 			msg  <- json_all$RESULT$MESSAGE	
-			df <- paste0(code, " (", msg, ")")
+
+			stop(paste0(code, "\n (", msg, ")"))
 
 		}
 
