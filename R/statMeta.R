@@ -1,14 +1,14 @@
-#' keyStatList Function
+#' statMeta Function
 #'
 #' You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
-#' @param api_key,format,lang,count input parameters
-#' @keywords ecos, keyStatList 
+#' @param api_key,format,lang,count,data_name input parameters
+#' @keywords ecos, statMeta 
 #' @export
 #' @examples
-#' # 100 Key Economic Statistics in Korea
-#' df <- keyStatList()
+#' # Economic Statistics Meta in Korea
+#' df <- statMeta()
 #' head(df)
-keyStatList <- function(api_key, format, lang, count) {
+statMeta <- function(api_key, format, lang, count, data_name) {
 
 	if (missing(api_key))
 		api_key <- "LBVUDMTWICYRKCSJAYO6"
@@ -20,24 +20,26 @@ keyStatList <- function(api_key, format, lang, count) {
 		lang <- "kr"
 
 	if (missing(count))
-		count <- 100
+		count <- 16 
+
+	if (missing(count))
+		data_name <- "경제심리" 
 
 	if (format == "json") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/KeyStatisticList/%s/%s/%s/1/%s/",
-								 api_key, format, lang, count))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/",
+								 api_key, format, lang, count, data_name))
 		html <- getURLContent(url)
 		json_all <- fromJSON(html)
-		cnt <- json_all$KeyStatisticList$list_total_count
-		df  <- json_all$KeyStatisticList$row
+		cnt <- json_all$StatisticMeta$list_total_count
+		df  <- json_all$StatisticMeta$row
 		names(df) <- tolower(names(df))
-		# df$data_value <- as.numeric(df$data_value)
 		attr(df, "list_total_count") <- cnt 
 
 	} else if (format == "xml") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/KeyStatisticList/%s/%s/%s/1/%s/",
-								 api_key, format, lang, count))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/",
+								 api_key, format, lang, count, data_name))
 		html <- getURLContent(url)
 		xml_all <- xmlParse(html)
 		xml_cnt <- xpathApply(xml_all, "//list_total_count")[[1]]
@@ -45,7 +47,6 @@ keyStatList <- function(api_key, format, lang, count) {
 		xml_row <- xpathApply(xml_all, "//row") 
 		df <- xmlToDataFrame(xml_row, stringsAsFactors = FALSE)
 		names(df) <- tolower(names(df))
-		# df$data_value <- as.numeric(df$data_value)
 		attr(df, "list_total_count") <- cnt 
 
 	} else {
