@@ -7,7 +7,7 @@
 statWord(api_key, format, lang, count, word)
 }
 \arguments{
-\item{api_key, format, lang, count, data_name}{input parameters}
+\item{api_key, format, lang, count, word}{input parameters}
 }
 \description{
 You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)

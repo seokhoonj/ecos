@@ -8,6 +8,6 @@ export(statTableList)
 export(statWord)
 
 import(RCurl)
-import(jsonlite)
 import(XML)
+import(jsonlite)
 

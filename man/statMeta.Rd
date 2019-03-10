@@ -7,7 +7,7 @@
 statMeta(api_key, format, lang, count, meta)
 }
 \arguments{
-\item{api_key, format, lang, count, data_name}{input parameters}
+\item{api_key, format, lang, count, meta}{input parameters}
 }
 \description{
 You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
