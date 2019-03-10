@@ -5,6 +5,7 @@ export(statItemList)
 export(statMeta)
 export(statSearch)
 export(statTableList)
+export(statWord)
 
 import(RCurl)
 import(jsonlite)
