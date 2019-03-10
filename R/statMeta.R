@@ -23,7 +23,7 @@ statMeta <- function(api_key, format, lang, count, meta) {
 		count <- 16 
 
 	if (missing(count))
-		data_name <- "경제심리" 
+		meta <- "경제심리" 
 
 	if (format == "json") {
 
