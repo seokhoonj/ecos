@@ -22,13 +22,7 @@ statItemList <- function(api_key, format, lang, count, stat_code) {
 	if (missing(count))
 		count <- 100
 
-	if (missing(count))
-		stat_code <- "010Y002"
-
-		api_key <- "LBVUDMTWICYRKCSJAYO6"
-		format <- "json"
-		lang <- "kr"
-		count <- 100
+	if (missing(stat_code))
 		stat_code <- "010Y002"
 
 	if (format == "json") {
