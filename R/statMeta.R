@@ -1,7 +1,7 @@
 #' statMeta Function
 #'
 #' You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
-#' @param api_key,format,lang,count,data_name input parameters
+#' @param api_key,format,lang,count,meta input parameters
 #' @keywords ecos, statMeta 
 #' @export
 #' @examples
@@ -22,7 +22,7 @@ statMeta <- function(api_key, format, lang, count, meta) {
 	if (missing(count))
 		count <- 16 
 
-	if (missing(count))
+	if (missing(meta))
 		meta <- "경제심리" 
 
 	if (format == "json") {
