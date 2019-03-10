@@ -14,7 +14,7 @@ statMeta <- function(api_key, format, lang, count, meta) {
 		api_key <- "LBVUDMTWICYRKCSJAYO6"
 
 	if (missing(format))
-		format <- "json"
+		format <- "xml"
 
 	if (missing(lang))
 		lang <- "kr"
@@ -25,18 +25,7 @@ statMeta <- function(api_key, format, lang, count, meta) {
 	if (missing(meta))
 		meta <- "경제심리" 
 
-	if (format == "json") {
-
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/",
-								 api_key, format, lang, count, meta))
-		html <- getURLContent(url)
-		json_all <- fromJSON(html)
-		cnt <- json_all$StatisticMeta$list_total_count
-		df  <- json_all$StatisticMeta$row
-		names(df) <- tolower(names(df))
-		attr(df, "list_total_count") <- cnt 
-
-	} else if (format == "xml") {
+	if (format == "xml") {
 
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/",
 								 api_key, format, lang, count, meta))
@@ -46,6 +35,17 @@ statMeta <- function(api_key, format, lang, count, meta) {
 		cnt <- as.integer(xmlToList(xml_cnt))
 		xml_row <- xpathApply(xml_all, "//row") 
 		df <- xmlToDataFrame(xml_row, stringsAsFactors = FALSE)
+		names(df) <- tolower(names(df))
+		attr(df, "list_total_count") <- cnt 
+
+	} else if (format == "json") {
+
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/",
+								 api_key, format, lang, count, meta))
+		html <- getURLContent(url)
+		json_all <- fromJSON(html)
+		cnt <- json_all$StatisticMeta$list_total_count
+		df  <- json_all$StatisticMeta$row
 		names(df) <- tolower(names(df))
 		attr(df, "list_total_count") <- cnt 
 

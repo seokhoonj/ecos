@@ -18,7 +18,7 @@ statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_dat
 		api_key <- "LBVUDMTWICYRKCSJAYO6" # instant code (to be deleted)
 
 	if (missing(format))
-		format <- "json" # file format
+		format <- "xml" # file format
 
 	if (missing(lang))
 		lang <- "kr"     # en is second option
@@ -41,21 +41,7 @@ statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_dat
 	if (missing(item_code))
 		item_code <- "AAAA11"
 
-	if (format == "json") {
-
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", 
-								 api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
-		html <- getURLContent(url)
-		json_all <- fromJSON(html)
-		cnt  <- json_all$StatisticSearch$list_total_count
-		df   <- json_all$StatisticSearch$row
-		df[] <- lapply(df, trimws)
-		names(df) <- tolower(names(df))
-		df$time <- as.Date(paste0(df$time, "01"), format = "%Y%m%d")
-		df$data_value <- as.numeric(df$data_value)
-		attr(df, "list_total_count") <- cnt 
-
-	} else if (format == "xml") {
+	if (format == "xml") {
 
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", 
 								 api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
@@ -69,6 +55,21 @@ statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_dat
 		df$time <- as.Date(paste0(as.character(df$time), "01"), format = "%Y%m%d")
 		df$data_value <- as.numeric(df$data_value)
 		attr(df, "list_total_count") <- cnt 
+
+	} else if (format == "json") {
+
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", 
+								 api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
+		html <- getURLContent(url)
+		json_all <- fromJSON(html)
+		cnt  <- json_all$StatisticSearch$list_total_count
+		df   <- json_all$StatisticSearch$row
+		df[] <- lapply(df, trimws)
+		names(df) <- tolower(names(df))
+		df$time <- as.Date(paste0(df$time, "01"), format = "%Y%m%d")
+		df$data_value <- as.numeric(df$data_value)
+		attr(df, "list_total_count") <- cnt 
+
 	} else {
 
 		stop("not supported data format.")
