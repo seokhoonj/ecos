@@ -9,5 +9,5 @@ Economic Statistics from Bank of Korea through the open API
 
 ### Installation
 if (!require(devtools)) install.packages("devtools"); require(devtools)  
-install_github("seokhoonj/ecos")  
+devtools::install_github("seokhoonj/ecos")  
 library(ecos)
