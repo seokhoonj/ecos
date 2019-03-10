@@ -43,7 +43,7 @@ keyStatList <- function(api_key, format, lang, count) {
 			code <- xmlToList(xpathApply(xml_all, "//CODE")[[1]])
 			msg  <- xmlToList(xpathApply(xml_all, "//MESSAGE")[[1]])
 
-			stop(paste0(code, "\n", msg))
+			stop(paste0(code, "\n ", msg))
 
 		}
 
@@ -66,7 +66,7 @@ keyStatList <- function(api_key, format, lang, count) {
 			code <- json_all$RESULT$CODE	
 			msg  <- json_all$RESULT$MESSAGE	
 
-			stop(paste0(code, "\n", msg))
+			stop(paste0(code, "\n ", msg))
 
 		}
 
