@@ -31,7 +31,6 @@ keyStatList <- function(api_key, format, lang, count) {
 		cnt <- json_all$KeyStatisticList$list_total_count
 		df  <- json_all$KeyStatisticList$row
 		names(df) <- tolower(names(df))
-		# df$data_value <- as.numeric(df$data_value)
 		attr(df, "list_total_count") <- cnt 
 
 	} else if (format == "xml") {
@@ -45,7 +44,6 @@ keyStatList <- function(api_key, format, lang, count) {
 		xml_row <- xpathApply(xml_all, "//row") 
 		df <- xmlToDataFrame(xml_row, stringsAsFactors = FALSE)
 		names(df) <- tolower(names(df))
-		# df$data_value <- as.numeric(df$data_value)
 		attr(df, "list_total_count") <- cnt 
 
 	} else {
