@@ -1,7 +1,7 @@
 #' statWord Function
 #'
 #' You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
-#' @param api_key,format,lang,count,data_name input parameters
+#' @param api_key,format,lang,count,word input parameters
 #' @keywords ecos, statMeta 
 #' @export
 #' @examples
@@ -22,7 +22,7 @@ statWord <- function(api_key, format, lang, count, word) {
 	if (missing(count))
 		count <- 10 
 
-	if (missing(count))
+	if (missing(word))
 		word <- "소비자" 
 
 	if (format == "json") {
