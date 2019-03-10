@@ -8,7 +8,7 @@
 #' # Economic Statistics word from Bank of Korea through the OPEN API
 #' df <- statWord()
 #' head(df)
-statMeta <- function(api_key, format, lang, count, word) {
+statWord <- function(api_key, format, lang, count, word) {
 
 	if (missing(api_key))
 		api_key <- "LBVUDMTWICYRKCSJAYO6"
