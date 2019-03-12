@@ -14,7 +14,7 @@ devtools::install_github("seokhoonj/ecos")
 library(ecos)
 ```
 
-### example 
+### examples
 ```r
 # possible table list
 data("tableList")
