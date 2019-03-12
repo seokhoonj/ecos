@@ -31,12 +31,24 @@ statMeta <- function(api_key, format, lang, count, meta) {
 								 api_key, format, lang, count, meta))
 		html <- getURLContent(url)
 		xml_all <- xmlParse(html)
-		xml_cnt <- xpathApply(xml_all, "//list_total_count")[[1]]
-		cnt <- as.integer(xmlToList(xml_cnt))
-		xml_row <- xpathApply(xml_all, "//row") 
-		df <- xmlToDataFrame(xml_row, stringsAsFactors = FALSE)
-		names(df) <- tolower(names(df))
-		attr(df, "list_total_count") <- cnt 
+
+		if (is.null(unlist(xpathApply(xml_all, "//RESULT")))) {
+
+			xml_cnt <- xpathApply(xml_all, "//list_total_count")[[1]]
+			cnt <- as.integer(xmlToList(xml_cnt))
+			xml_row <- xpathApply(xml_all, "//row") 
+			df <- xmlToDataFrame(xml_row, stringsAsFactors = FALSE)
+			names(df) <- tolower(names(df))
+			attr(df, "list_total_count") <- cnt 
+
+		} else {
+
+			code <- xmlToList(xpathApply(xml_all, "//CODE")[[1]])
+			msg  <- xmlToList(xpathApply(xml_all, "//MESSAGE")[[1]])
+
+			stop(paste0(code, "\n ", msg))
+
+		}
 
 	} else if (format == "json") {
 
@@ -44,10 +56,22 @@ statMeta <- function(api_key, format, lang, count, meta) {
 								 api_key, format, lang, count, meta))
 		html <- getURLContent(url)
 		json_all <- fromJSON(html)
-		cnt <- json_all$StatisticMeta$list_total_count
-		df  <- json_all$StatisticMeta$row
-		names(df) <- tolower(names(df))
-		attr(df, "list_total_count") <- cnt 
+
+		if (is.null(json_all$RESULT)) {
+
+			cnt <- json_all$StatisticMeta$list_total_count
+			df  <- json_all$StatisticMeta$row
+			names(df) <- tolower(names(df))
+			attr(df, "list_total_count") <- cnt 
+
+		} else {
+
+			code <- json_all$RESULT$CODE	
+			msg  <- json_all$RESULT$MESSAGE	
+
+			stop(paste0(code, "\n ", msg))
+
+		}
 
 	} else {
 
