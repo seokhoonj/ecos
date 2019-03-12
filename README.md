@@ -4,7 +4,7 @@ ecos package
 ### Introduction
 한국은행 경제통계 시스템  
 
-Economic Statistics from Bank of Korea through the open API  
+Economic Statistics System of Bank of Korea through the OPEN API  
 (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp?t=main)
 
 ### Installation
