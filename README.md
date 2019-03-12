@@ -21,7 +21,7 @@ data("tableList")
 tableList_srch_Y <- tableList[tableList$srch_yn == "Y",] 
 
 # data search 
-market_interest_rates <- statSearch(stat_code = "028Y001", item_code = "BEEA14")
+market_interest_rates <- statSearch(lang = "en", stat_code = "028Y001", item_code = "BEEA14")
 
 # visualization
 library(ggplot2)
