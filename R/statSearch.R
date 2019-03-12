@@ -18,10 +18,10 @@ statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_dat
 		api_key <- "LBVUDMTWICYRKCSJAYO6" # instant code (to be deleted)
 
 	if (missing(format))
-		format <- "xml" # file format
+		format <- "xml"		# file format
 
 	if (missing(lang))
-		lang <- "kr"     # en is second option
+		lang <- "kr"		# en is second option
 
 	if (missing(count))
 		count <- 1000
@@ -30,7 +30,7 @@ statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_dat
 		stat_code <- "010Y002"
 	
 	if (missing(cycle))
-		cycle <- "MM"	 # YY,QQ,MM,DD 
+		cycle <- "MM"		# YY,QQ,MM,DD 
 
 	if (missing(start_date))
 		start_date <- "196001"
@@ -39,7 +39,7 @@ statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_dat
 		end_date <- "201812"
 
 	if (missing(item_code))
-		item_code <- "AAAA11"
+		item_code <- "?"	# "AAAA11"
 
 	if (format == "xml") {
 
