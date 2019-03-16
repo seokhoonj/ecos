@@ -14,7 +14,7 @@ You can access economic statistics from Bank of Korea through the OPEN API (http
 }
 \examples{
 # Economic Statistic Item List from Bank of Korea through the OPEN API
-df <- statItemList()
+df <- statItemList(api_key = your_api_key, format = "xml", lang = "kr", count = 100, stat_code = "010Y002")
 head(df)
 }
 \keyword{ecos,}

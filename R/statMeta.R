@@ -6,7 +6,7 @@
 #' @export
 #' @examples
 #' # Economic Statistics Meta from Bank of Korea through the OPEN API
-#' df <- statMeta()
+#' df <- statMeta(api_key = your_api_key, format = "xml", lang = "kr", count = 16, meta = "경제심리")
 #' head(df)
 statMeta <- function(api_key, format, lang, count, meta) {
 

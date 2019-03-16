@@ -6,7 +6,7 @@
 #' @export
 #' @examples
 #' # Economic Statistics Table List from Bank of Korea through the OPEN API
-#' df <- statTableList()
+#' df <- statTableList(api_key = your_api_key, format = "xml", lang = "kr", count = 1000)
 #' head(df)
 statTableList <- function(api_key, format, lang, count) {
 	

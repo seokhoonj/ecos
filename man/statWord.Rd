@@ -14,7 +14,7 @@ You can access economic statistics from Bank of Korea through the open API (http
 }
 \examples{
 # Economic Statistics word from Bank of Korea through the OPEN API
-df <- statWord()
+df <- statWord(api_key = your_api_key, format = "xml", lang = "kr", count = 10, word = "소비자")
 head(df)
 }
 \keyword{ecos,}

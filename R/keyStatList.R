@@ -5,8 +5,8 @@
 #' @keywords ecos, keyStatList 
 #' @export
 #' @examples
-#' # 100 Key Economic Statistics in Korea
-#' df <- keyStatList()
+#' # 100 Key Economic Statistics from Bank of Korea through the OPEN API
+#' df <- keyStatList(api_key = your_api_key, format = "xml", lang = "kr", count = 100)
 #' head(df)
 keyStatList <- function(api_key, format, lang, count) {
 

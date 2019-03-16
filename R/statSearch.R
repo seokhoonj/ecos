@@ -5,12 +5,8 @@
 #' @keywords ecos, statSearch
 #' @export
 #' @examples
-#' # basic
-#' df <- statSearch()
-#' head(df)
-#' 
 #' # stock index futures 
-#' df <- statSearch(stat_code = "085Y007", item_code = "S25B")
+#' df <- statSearch(api_key = your_api_key, format = "xml", lang = "kr", count = 1000, stat_code = "085Y007", cycle = "MM", start_date = "196001", end_date = "201812", item_code = "S25B")
 #' head(df)
 statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code) {
 

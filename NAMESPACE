@@ -10,4 +10,3 @@ export(statWord)
 import(RCurl)
 import(XML)
 import(jsonlite)
-
