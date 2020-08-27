@@ -1,7 +1,7 @@
 #' statSearch Function
 #'
 #' You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
-#' @param api_key,format,lang,count,stat_code,cycle,start_date,end_date,item_code input parameters
+#' @param api_key,format,lang,count,stat_code,cycle,start_time,end_time,item_code input parameters
 #' @keywords ecos, statSearch
 #' @export
 #' @examples
