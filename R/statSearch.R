@@ -6,9 +6,9 @@
 #' @export
 #' @examples
 #' # stock index futures 
-#' df <- statSearch(api_key = your_api_key, format = "xml", lang = "kr", count = 1000, stat_code = "085Y007", cycle = "MM", start_date = "196001", end_date = "201812", item_code = "S25B")
+#' df <- statSearch(api_key = your_api_key, format = "xml", lang = "kr", stat_code = "085Y007", item_code = "S25B", cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
 #' head(df)
-statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code) {
+statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start_time, end_time, count) {
 
 	if (missing(api_key))
 	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
@@ -19,23 +19,26 @@ statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_dat
 	if (missing(lang))
 		lang <- "kr"		# en is second option
 
-	if (missing(count))
-		count <- 1000
-
 	if (missing(stat_code))
 		stat_code <- "010Y002"
 	
+	# item_list
+	item_list <- statItemList(api_key=api_key, stat_code=stat_code)
+	
+	if (missing(item_code))
+		item_code <- item_list$cycle[1]	# "AAAA11"
+	
 	if (missing(cycle))
-		cycle <- "MM"		# YY,QQ,MM,DD 
+		cycle <- item_list$cycle[1]	# YY,QQ,MM,DD 
 
-	if (missing(start_date))
-		start_date <- "196001"
+	if (missing(start_time))
+		start_time <- item_list$start_time[1]
 
 	if (missing(end_date))
-		end_date <- "201812"
-
-	if (missing(item_code))
-		item_code <- "?"	# "AAAA11"
+		end_date <- item_list$end_time[1]
+	
+	if (missing(count))
+		count <- item_list$data_cnt[1]
 
 	if (format == "xml") {
 

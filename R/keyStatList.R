@@ -11,16 +11,16 @@
 keyStatList <- function(api_key, format, lang, count) {
 
 	if (missing(api_key))
-	    stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
+	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
 
 	if (missing(format))
-		format <- "xml"
+	  format <- "xml"
 
 	if (missing(lang))
-		lang <- "kr"
+	  lang <- "kr"
 
 	if (missing(count))
-		count <- 100
+	  count <- 100
 
 	if (format == "xml") {
 
