@@ -26,7 +26,7 @@ statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start
 	item_list <- statItemList(api_key=api_key, stat_code=stat_code)
 	
 	if (missing(item_code))
-		item_code <- item_list$cycle[1]	# "AAAA11"
+		item_code <- item_list$item_code[1]	# "AAAA11"
 	
 	if (missing(cycle))
 		cycle <- item_list$cycle[1]	# YY,QQ,MM,DD 
