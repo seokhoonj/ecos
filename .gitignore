@@ -4,3 +4,4 @@
 *.RData
 *.zip
 
+.Rproj.user

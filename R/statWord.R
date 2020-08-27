@@ -11,7 +11,7 @@
 statWord <- function(api_key, format, lang, count, word) {
 
 	if (missing(api_key))
-		api_key <- "LBVUDMTWICYRKCSJAYO6"
+	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
 
 	if (missing(format))
 		format <- "xml"

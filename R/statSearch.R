@@ -11,7 +11,7 @@
 statSearch <- function(api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code) {
 
 	if (missing(api_key))
-		api_key <- "LBVUDMTWICYRKCSJAYO6" # instant code (to be deleted)
+	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
 
 	if (missing(format))
 		format <- "xml"		# file format
