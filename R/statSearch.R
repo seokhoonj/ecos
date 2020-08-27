@@ -34,15 +34,15 @@ statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start
 	if (missing(start_time))
 		start_time <- item_list$start_time[1]
 
-	if (missing(end_date))
-		end_date <- item_list$end_time[1]
+	if (missing(end_time))
+		end_time <- item_list$end_time[1]
 	
 	if (missing(count))
 		count <- item_list$data_cnt[1]
 
 	if (format == "xml") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", api_key, format, lang, count, stat_code, cycle, start_time, end_time, item_code))
 		html <- getURLContent(url)
 		xml_all <- xmlParse(html)
 
@@ -69,7 +69,7 @@ statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start
 
 	} else if (format == "json") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", api_key, format, lang, count, stat_code, cycle, start_time, end_time, item_code))
 		html <- getURLContent(url)
 		json_all <- fromJSON(html)
 
