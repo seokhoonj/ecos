@@ -12,33 +12,41 @@ statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start
   
   options('max.print'=.Machine$integer.max)
  
-	if (missing(api_key))
+	if (missing(api_key)) 
 	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
 
-	if (missing(format))
-		format <- "xml"		# file format
+	if (missing(format)) 
+	  format <- "xml"		# file format
 
-	if (missing(lang))
-		lang <- "kr"		# en is second option
+	if (missing(lang)) 
+	  lang <- "kr"		# en is second option
 	
-	if (missing(stat_code)) {
+	if (missing(stat_code)) { 
+	  
 	  stat_list <- statTableList(api_key=api_key)
 	  print(stat_list)
 	  stat_code <- readline('Please insert stat_code: ')
 	  item_list <- statItemList(api_key = api_key, stat_code = stat_code)
+	  
 	} else {
+	  
 	  item_list <- statItemList(api_key = api_key, stat_code = stat_code)
+	  
 	}
 	
 	if (missing(item_code)) {
+	  
 	  print(item_list)
 	  item_code <- readline('Please insert item_code: ')
 	  item_args <- item_list[item_list$item_code==item_code,]
+	  
 	} else {
+	  
 	  item_args <- item_list[item_list$item_code==item_code,]
+	  
 	}
 	
-	if (missing(cycle))
+	if (missing(cycle)) 
 	  cycle <- item_args$cycle
 	
 	if (missing(start_time)) 
