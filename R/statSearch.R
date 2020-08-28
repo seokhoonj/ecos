@@ -18,28 +18,34 @@ statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start
 
 	if (missing(lang))
 		lang <- "kr"		# en is second option
-
-	if (missing(stat_code))
-		stat_code <- "010Y002"
 	
-	# item_list
-	item_list <- statItemList(api_key=api_key, stat_code=stat_code)
+	if (missing(stat_code)) {
+	  stat_list <- statTableList(api_key=api_key)
+	  options('max.print'=.Machine$integer.max)
+	  print(stat_list)
+	  stat_code <- readline('Please insert stat_code: ')
+	  item_list <- statItemList(api_key = api_key, stat_code = stat_code)
+	}
 	
-	if (missing(item_code))
-		item_code <- item_list$item_code[1]	# "AAAA11"
+	if (missing(item_code)) {
+	  print(item_list)
+	  item_code <- readline('Please insert item_code: ')
+	  item_args = item_list[item_list$item_code==item_code,]
+	  options('max.print'=1000)
+	}
 	
 	if (missing(cycle))
-		cycle <- item_list$cycle[1]	# YY,QQ,MM,DD 
-
-	if (missing(start_time))
-		start_time <- item_list$start_time[1]
-
-	if (missing(end_time))
-		end_time <- item_list$end_time[1]
+	  cycle <- item_args$cycle
 	
-	if (missing(count))
-		count <- item_list$data_cnt[1]
-
+	if (missing(start_time)) 
+	  start_time <- item_args$start_time
+	
+	if (missing(end_time)) 
+	  end_time <- item_args$end_time
+	
+	if (missing(count)) 
+	  count <- item_args$data_cnt
+	
 	if (format == "xml") {
 
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", api_key, format, lang, count, stat_code, cycle, start_time, end_time, item_code))
