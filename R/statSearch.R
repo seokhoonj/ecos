@@ -9,7 +9,9 @@
 #' df <- statSearch(api_key = your_api_key, format = "xml", lang = "kr", stat_code = "085Y007", item_code = "S25B", cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
 #' head(df)
 statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start_time, end_time, count) {
-
+  
+  options('max.print'=.Machine$integer.max)
+ 
 	if (missing(api_key))
 	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
 
@@ -21,17 +23,19 @@ statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start
 	
 	if (missing(stat_code)) {
 	  stat_list <- statTableList(api_key=api_key)
-	  options('max.print'=.Machine$integer.max)
 	  print(stat_list)
 	  stat_code <- readline('Please insert stat_code: ')
+	  item_list <- statItemList(api_key = api_key, stat_code = stat_code)
+	} else {
 	  item_list <- statItemList(api_key = api_key, stat_code = stat_code)
 	}
 	
 	if (missing(item_code)) {
 	  print(item_list)
 	  item_code <- readline('Please insert item_code: ')
-	  item_args = item_list[item_list$item_code==item_code,]
-	  options('max.print'=1000)
+	  item_args <- item_list[item_list$item_code==item_code,]
+	} else {
+	  item_args <- item_list[item_list$item_code==item_code,]
 	}
 	
 	if (missing(cycle))
