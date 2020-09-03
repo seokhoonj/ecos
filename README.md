@@ -22,7 +22,7 @@ Please insert stat_code: I10Y014
 Please insert item_code: US
 
 # or simply
-interest_rate <- statSearch(lang = "en", stat_code = "028Y001", item_code = "BEEA14")
+interest_rate <- statSearch(api_key = _your_token_, stat_code = "I10Y014", item_code = "US")
 
 ```
 
