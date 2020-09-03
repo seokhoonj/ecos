@@ -1,6 +1,6 @@
 Package: ecos
 Title: Economic Statistics from Bank of Korea for R users
-Version: 0.0.0.9001
+Version: 1.0.0.0000
 Authors@R: 
     person(given = "Seokhoon",
            family = "Joo",

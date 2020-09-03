@@ -24,8 +24,8 @@ keyStatList <- function(api_key, format, lang, count) {
 
 	if (format == "xml") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/KeyStatisticList/%s/%s/%s/1/%s/",
-								 api_key, format, lang, count))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/KeyStatisticList/%s/%s/%s/1/%s/", 
+		                         api_key, format, lang, count))
 		html <- getURLContent(url)
 		xml_all <- xmlParse(html)
 
@@ -49,8 +49,8 @@ keyStatList <- function(api_key, format, lang, count) {
 
 	} else if (format == "json") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/KeyStatisticList/%s/%s/%s/1/%s/",
-								 api_key, format, lang, count))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/KeyStatisticList/%s/%s/%s/1/%s/", 
+		                         api_key, format, lang, count))
 		html <- getURLContent(url)
 		json_all <- fromJSON(html)
 
