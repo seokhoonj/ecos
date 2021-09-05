@@ -4,18 +4,27 @@
 \alias{statSearch}
 \title{statSearch Function}
 \usage{
-statSearch(api_key, format, lang, count, stat_code, cycle, start_date,
-  end_date, item_code)
+statSearch(
+  api_key,
+  format,
+  lang,
+  stat_code,
+  item_code,
+  cycle,
+  start_time,
+  end_time,
+  count
+)
 }
 \arguments{
-\item{api_key, format, lang, count, stat_code, cycle, start_date, end_date, item_code}{input parameters}
+\item{api_key, format, lang, count, stat_code, cycle, start_time, end_time, item_code}{input parameters}
 }
 \description{
 You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
 }
 \examples{
 # stock index futures 
-df <- statSearch(api_key = your_api_key, format = "xml", lang = "kr", count = 1000, stat_code = "085Y007", cycle = "MM", start_date = "196001", end_date = "201812", item_code = "S25B")
+df <- statSearch(api_key = your_api_key, format = "xml", lang = "kr", stat_code = "085Y007", item_code = "S25B", cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
 head(df)
 }
 \keyword{ecos,}
