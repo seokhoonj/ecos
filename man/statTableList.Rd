@@ -4,7 +4,7 @@
 \alias{statTableList}
 \title{statTableList Function}
 \usage{
-statTableList(api_key, format, lang, count)
+statTableList(api_key, format = c("xml", "json"), lang = c("kr", "en"), count)
 }
 \arguments{
 \item{api_key, format, lang, count}{input parameters}

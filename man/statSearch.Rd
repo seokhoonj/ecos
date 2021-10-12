@@ -6,10 +6,12 @@
 \usage{
 statSearch(
   api_key,
-  format,
-  lang,
+  format = c("xml", "json"),
+  lang = c("kr", "en"),
   stat_code,
   item_code,
+  item_code2,
+  item_code3,
   cycle,
   start_time,
   end_time,
@@ -17,7 +19,7 @@ statSearch(
 )
 }
 \arguments{
-\item{api_key, format, lang, count, stat_code, cycle, start_time, end_time, item_code}{input parameters}
+\item{api_key, format, lang, count, stat_code, cycle, start_time, end_time, item_code, item_code2, item_code3}{input parameters}
 }
 \description{
 You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)

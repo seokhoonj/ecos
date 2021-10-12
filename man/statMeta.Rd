@@ -4,7 +4,7 @@
 \alias{statMeta}
 \title{statMeta Function}
 \usage{
-statMeta(api_key, format, lang, count, meta)
+statMeta(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, meta)
 }
 \arguments{
 \item{api_key, format, lang, count, meta}{input parameters}

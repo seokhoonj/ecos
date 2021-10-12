@@ -17,12 +17,12 @@ library(ecos)
 ### examples
 ```r
 # data search (if you don't know the stat_code / item_code)
-interest_rate <- statSearch(api_key = _your_token_)
+interest_rate <- statSearch(api_key = _your_api_token_)
 Please insert stat_code: I10Y014
 Please insert item_code: US
 
 # or simply
-interest_rate <- statSearch(api_key = _your_token_, stat_code = "I10Y014", item_code = "US")
+interest_rate <- statSearch(api_key = _your_api_token_, stat_code = "I10Y014", item_code = "US")
 
 ```
 

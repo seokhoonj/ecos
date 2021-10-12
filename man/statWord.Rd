@@ -4,7 +4,7 @@
 \alias{statWord}
 \title{statWord Function}
 \usage{
-statWord(api_key, format, lang, count, word)
+statWord(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, word)
 }
 \arguments{
 \item{api_key, format, lang, count, word}{input parameters}

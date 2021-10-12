@@ -8,16 +8,10 @@
 #' # Economic Statistics Meta from Bank of Korea through the OPEN API
 #' df <- statMeta(api_key = your_api_key, format = "xml", lang = "kr", count = 16, meta = "경제심리")
 #' head(df)
-statMeta <- function(api_key, format, lang, count, meta) {
+statMeta <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, meta) {
 
 	if (missing(api_key))
 	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
-
-	if (missing(format))
-		format <- "xml"
-
-	if (missing(lang))
-		lang <- "kr"
 
 	if (missing(count))
 		count <- 16 
@@ -25,10 +19,10 @@ statMeta <- function(api_key, format, lang, count, meta) {
 	if (missing(meta))
 		meta <- "경제심리" 
 
-	if (format == "xml") {
+	if (format[[1]] == "xml") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/",
-								 api_key, format, lang, count, meta))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/", 
+		                         api_key, format[[1]], lang[[1]], count, meta))
 		html <- getURLContent(url)
 		xml_all <- xmlParse(html)
 
@@ -50,10 +44,10 @@ statMeta <- function(api_key, format, lang, count, meta) {
 
 		}
 
-	} else if (format == "json") {
+	} else if (format[[1]] == "json") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/",
-								 api_key, format, lang, count, meta))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/", 
+		                         api_key, format[[1]], lang[[1]], count, meta))
 		html <- getURLContent(url)
 		json_all <- fromJSON(html)
 
@@ -75,7 +69,7 @@ statMeta <- function(api_key, format, lang, count, meta) {
 
 	} else {
 
-		stop("not supported data format.")
+		stop("This file format is not supported.")
 
 	}
 

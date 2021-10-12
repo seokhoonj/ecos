@@ -1,31 +1,25 @@
 #' statSearch Function
 #'
 #' You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
-#' @param api_key,format,lang,count,stat_code,cycle,start_time,end_time,item_code input parameters
+#' @param api_key,format,lang,count,stat_code,cycle,start_time,end_time,item_code,item_code2,item_code3 input parameters
 #' @keywords ecos, statSearch
 #' @export
 #' @examples
 #' # stock index futures 
 #' df <- statSearch(api_key = your_api_key, format = "xml", lang = "kr", stat_code = "085Y007", item_code = "S25B", cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
 #' head(df)
-statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start_time, end_time, count) {
+statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), stat_code, item_code, item_code2, item_code3, cycle, start_time, end_time, count) {
  
 	if (missing(api_key)) 
 	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
-
-	if (missing(format)) 
-	  format <- "xml"		# file format
-
-	if (missing(lang)) 
-	  lang <- "kr"		# en is second option
 	
 	if (missing(stat_code)) { 
 	  
-	  options('max.print'=.Machine$integer.max)
-	  stat_list <- statTableList(api_key=api_key)
+	  options("max.print" = .Machine$integer.max)
+	  stat_list <- statTableList(api_key = api_key)
 	  print(stat_list[, -length(stat_list)])
-	  options('max.print'=1000)
-	  stat_code <- readline('Please insert stat_code: ')
+	  options("max.print" = 1e3)
+	  stat_code <- readline("Please insert stat_code: ")
 	  item_list <- statItemList(api_key = api_key, stat_code = stat_code)
 	  
 	} else {
@@ -37,15 +31,21 @@ statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start
 	if (missing(item_code)) {
 	  
 	  print(item_list)
-	  item_code <- readline('Please insert item_code: ')
-	  item_args <- item_list[item_list$item_code==item_code,]
+	  item_code <- readline("Please insert item_code: ")
+	  item_args <- item_list[item_list$item_code == item_code,]
 	  
 	} else {
 	  
-	  item_args <- item_list[item_list$item_code==item_code,]
+	  item_args <- item_list[item_list$item_code == item_code,]
 	  
 	}
+  
+  if (missing(item_code2))
+    item_code2 <- "?"
 	
+  if (missing(item_code3))
+    item_code3 <- "?"
+  
 	if (missing(cycle)) 
 	  cycle <- item_args$cycle
 	
@@ -58,9 +58,10 @@ statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start
 	if (missing(count)) 
 	  count <- item_args$data_cnt
 	
-	if (format == "xml") {
+	if (format[[1]] == "xml") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", api_key, format, lang, count, stat_code, cycle, start_time, end_time, item_code))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/%s/%s/", 
+		                         api_key, format[[1]], lang[[1]], count, stat_code, cycle, start_time, end_time, item_code, item_code2, item_code3))
 		html <- getURLContent(url)
 		xml_all <- xmlParse(html)
 
@@ -85,9 +86,10 @@ statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start
 
 		}
 
-	} else if (format == "json") {
+	} else if (format[[1]] == "json") {
 
-		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/?/?/", api_key, format, lang, count, stat_code, cycle, start_time, end_time, item_code))
+		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/%s/%s/", 
+		                         api_key, format[[1]], lang[[1]], count, stat_code, cycle, start_time, end_time, item_code, item_code2, item_code3))
 		html <- getURLContent(url)
 		json_all <- fromJSON(html)
 
@@ -112,7 +114,7 @@ statSearch <- function(api_key, format, lang, stat_code, item_code, cycle, start
 
 	} else {
 
-		stop("not supported data format.")
+		stop("This file format is not supported.")
 
 	}
 

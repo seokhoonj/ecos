@@ -4,7 +4,13 @@
 \alias{statItemList}
 \title{statItemList Function}
 \usage{
-statItemList(api_key, format, lang, count, stat_code)
+statItemList(
+  api_key,
+  format = c("xml", "json"),
+  lang = c("kr", "en"),
+  count,
+  stat_code
+)
 }
 \arguments{
 \item{api_key, format, lang, count, stat_code}{input parameters}

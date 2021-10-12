@@ -4,7 +4,7 @@
 \alias{keyStatList}
 \title{keyStatList Function}
 \usage{
-keyStatList(api_key, format, lang, count)
+keyStatList(api_key, format = c("xml", "json"), lang = c("kr", "en"), count)
 }
 \arguments{
 \item{api_key, format, lang, count}{input parameters}
