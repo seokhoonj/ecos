@@ -2,7 +2,7 @@
 % Please edit documentation in R/statWord.R
 \name{statWord}
 \alias{statWord}
-\title{statWord Function}
+\title{Glossary of Statistical Terms}
 \usage{
 statWord(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, word)
 }
@@ -10,12 +10,12 @@ statWord(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, word)
 \item{api_key, format, lang, count, word}{input parameters}
 }
 \description{
-You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
+statWord Function
 }
 \examples{
-# Economic Statistics word from Bank of Korea through the OPEN API
-df <- statWord(api_key = your_api_key, format = "xml", lang = "kr", count = 10, word = "소비자")
-head(df)
+statWord(api_key = your_api_key, format = "xml", lang = "en", count = 10, word = "CPIS")
+statWord(api_key = your_api_key, format = "xml", lang = "kr", count = 10, word = "CPIS")
+
 }
 \keyword{ecos,}
 \keyword{statMeta}

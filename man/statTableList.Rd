@@ -2,7 +2,7 @@
 % Please edit documentation in R/statTableList.R
 \name{statTableList}
 \alias{statTableList}
-\title{statTableList Function}
+\title{List of Statistical Tables}
 \usage{
 statTableList(api_key, format = c("xml", "json"), lang = c("kr", "en"), count)
 }
@@ -10,12 +10,12 @@ statTableList(api_key, format = c("xml", "json"), lang = c("kr", "en"), count)
 \item{api_key, format, lang, count}{input parameters}
 }
 \description{
-You can access economic statistics from Bank of Korea through the OPEN API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
+statTableList Function
 }
 \examples{
-# Economic Statistics Table List from Bank of Korea through the OPEN API
-df <- statTableList(api_key = your_api_key, format = "xml", lang = "kr", count = 1000)
-head(df)
+statTableList(api_key = your_api_key, format = "xml", lang = "en", count = 1000)
+statTableList(api_key = your_api_key, format = "xml", lang = "kr", count = 1000)
+
 }
 \keyword{ecos,}
 \keyword{statTableList}

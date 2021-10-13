@@ -1,17 +1,17 @@
 #' statItemList Function
 #'
-#' You can access economic statistics from Bank of Korea through the OPEN API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
+#' @title Item List of Statistics
 #' @param api_key,format,lang,count,stat_code input parameters
 #' @keywords ecos, statItemList 
 #' @export
 #' @examples
-#' # Economic Statistic Item List from Bank of Korea through the OPEN API
-#' df <- statItemList(api_key = your_api_key, format = "xml", lang = "kr", count = 100, stat_code = "010Y002")
-#' head(df)
+#' statItemList(api_key = your_api_key, format = "xml", lang = "en", count = 100, stat_code = "010Y002")
+#' statItemList(api_key = your_api_key, format = "xml", lang = "kr", count = 100, stat_code = "010Y002")
+#' 
 statItemList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, stat_code) {
 
 	if (missing(api_key))
-	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
+	  stop("Please create your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
 
 	if (missing(count))
 		count <- 100

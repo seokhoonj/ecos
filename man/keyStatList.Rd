@@ -2,7 +2,7 @@
 % Please edit documentation in R/keyStatList.R
 \name{keyStatList}
 \alias{keyStatList}
-\title{keyStatList Function}
+\title{Top 100 Statistical Indicators}
 \usage{
 keyStatList(api_key, format = c("xml", "json"), lang = c("kr", "en"), count)
 }
@@ -10,12 +10,12 @@ keyStatList(api_key, format = c("xml", "json"), lang = c("kr", "en"), count)
 \item{api_key, format, lang, count}{input parameters}
 }
 \description{
-You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
+keyStatList Function
 }
 \examples{
-# 100 Key Economic Statistics from Bank of Korea through the OPEN API
-df <- keyStatList(api_key = your_api_key, format = "xml", lang = "kr", count = 100)
-head(df)
+keyStatList(api_key = your_api_key, format = "xml", lang = "en", count = 100)
+keyStatList(api_key = your_api_key, format = "xml", lang = "kr", count = 100)
+
 }
 \keyword{ecos,}
 \keyword{keyStatList}

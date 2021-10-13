@@ -1,23 +1,23 @@
 #' statMeta Function
 #'
-#' You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
+#' @title Statistics Meta
 #' @param api_key,format,lang,count,meta input parameters
 #' @keywords ecos, statMeta 
 #' @export
 #' @examples
-#' # Economic Statistics Meta from Bank of Korea through the OPEN API
-#' df <- statMeta(api_key = your_api_key, format = "xml", lang = "kr", count = 16, meta = "경제심리")
-#' head(df)
+#' statMeta(api_key = your_api_key, format = "xml", lang = "en", count = 16, meta = "Economic Sentiment Index")
+#' statMeta(api_key = your_api_key, format = "xml", lang = "kr", count = 16, meta = "경제심리지수")
+#' 
 statMeta <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, meta) {
 
 	if (missing(api_key))
-	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
+	  stop("Please create your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
 
 	if (missing(count))
 		count <- 16 
 
 	if (missing(meta))
-		meta <- "경제심리" 
+		meta <- "경제심리지수" 
 
 	if (format[[1]] == "xml") {
 

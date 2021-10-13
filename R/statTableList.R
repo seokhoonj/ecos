@@ -1,17 +1,17 @@
 #' statTableList Function
 #'
-#' You can access economic statistics from Bank of Korea through the OPEN API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
+#' @title List of Statistical Tables
 #' @param api_key,format,lang,count input parameters
 #' @keywords ecos, statTableList 
 #' @export
 #' @examples
-#' # Economic Statistics Table List from Bank of Korea through the OPEN API
-#' df <- statTableList(api_key = your_api_key, format = "xml", lang = "kr", count = 1000)
-#' head(df)
+#' statTableList(api_key = your_api_key, format = "xml", lang = "en", count = 1000)
+#' statTableList(api_key = your_api_key, format = "xml", lang = "kr", count = 1000)
+#' 
 statTableList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), count) {
 	
 	if (missing(api_key))
-	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
+	  stop("Please create your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
 
 	if (missing(count))
 		count <- 1000 

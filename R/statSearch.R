@@ -1,17 +1,17 @@
 #' statSearch Function
 #'
-#' You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
+#' @title Search Statistics
 #' @param api_key,format,lang,count,stat_code,cycle,start_time,end_time,item_code,item_code2,item_code3 input parameters
 #' @keywords ecos, statSearch
 #' @export
 #' @examples
-#' # stock index futures 
-#' df <- statSearch(api_key = your_api_key, format = "xml", lang = "kr", stat_code = "085Y007", item_code = "S25B", cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
-#' head(df)
+#' statSearch(api_key = your_api_key, format = "xml", lang = "en", stat_code = "085Y007", item_code = "S25B", cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
+#' statSearch(api_key = your_api_key, format = "xml", lang = "kr", stat_code = "085Y007", item_code = "S25B", cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
+#' 
 statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), stat_code, item_code, item_code2, item_code3, cycle, start_time, end_time, count) {
  
 	if (missing(api_key)) 
-	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
+	  stop("Please create your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
 	
 	if (missing(stat_code)) { 
 	  

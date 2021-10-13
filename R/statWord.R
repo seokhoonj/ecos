@@ -1,23 +1,23 @@
 #' statWord Function
 #'
-#' You can access economic statistics from Bank of Korea through the open API (https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp)
+#' @title Glossary of Statistical Terms
 #' @param api_key,format,lang,count,word input parameters
 #' @keywords ecos, statMeta 
 #' @export
 #' @examples
-#' # Economic Statistics word from Bank of Korea through the OPEN API
-#' df <- statWord(api_key = your_api_key, format = "xml", lang = "kr", count = 10, word = "소비자")
-#' head(df)
+#' statWord(api_key = your_api_key, format = "xml", lang = "en", count = 10, word = "CPIS")
+#' statWord(api_key = your_api_key, format = "xml", lang = "kr", count = 10, word = "CPIS")
+#' 
 statWord <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, word) {
 
 	if (missing(api_key))
-	  stop("Please get your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
+	  stop("Please create your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
 
 	if (missing(count))
 		count <- 10 
 
 	if (missing(word))
-		word <- "소비자" 
+		word <- "CPIS" 
 
 	if (format[[1]] == "xml") {
 
