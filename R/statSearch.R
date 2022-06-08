@@ -86,8 +86,6 @@ statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"),
 	} else {
 		stop("This file format is not supported.")
 	}
-	if (checkStatSearchColumns(df))
-	  df <- df[, .statSearchColumns]
-	
+	df <- orderStatSearchColumns(df)
 	return(df); gc()
 }

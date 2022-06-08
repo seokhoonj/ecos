@@ -29,19 +29,6 @@ showStatTableList <- function(api_key) {
   cat(line)
 }
 
-checkStatSearchColumns <- function(df) {
-  .statSearchColumns <- c(
-    "stat_code" , "stat_name", 
-    "item_code1", "item_name1",
-    "item_code2", "item_name2", 
-    "item_code3", "item_name3",
-    "item_code4", "item_name4",
-    "time", "data_value", "unit_name"
-  )
-  check <- all(colnames(df) %in% .statSearchColumns)
-  return(check)
-}
-
 orderStatSearchColumns <- function(df) {
   .statSearchColumns <- c(
     "stat_code" , "stat_name", 
@@ -51,6 +38,8 @@ orderStatSearchColumns <- function(df) {
     "item_code4", "item_name4",
     "time", "data_value", "unit_name"
   )
-  if (checkStatSearchColumns(df))
-    df <<- df[, .statSearchColumns]
+  check <- all(colnames(df) %in% .statSearchColumns)
+  if (check)
+    df <- df[, .statSearchColumns]
+  return(df)
 }
