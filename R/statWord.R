@@ -10,7 +10,7 @@
 #' 
 statWord <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, word) {
 	if (missing(api_key))
-	  stop("Please create your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
+	  stop("Please create your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'")
 	if (missing(count))
 		count <- 10 
 	if (missing(word))

@@ -10,7 +10,7 @@
 #' 
 keyStatList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), count) {
 	if (missing(api_key))
-	  stop("Please create your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
+	  stop("Please create your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'")
 	if (missing(count))
 	  count <- 100
 	if (format[[1]] == "xml") {

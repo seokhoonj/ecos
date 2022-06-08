@@ -9,7 +9,7 @@
 #' 
 statMeta <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, meta) {
 	if (missing(api_key))
-	  stop("Please create your api key from website 'https://ecos.bok.or.kr/jsp/openapi/OpenApiController.jsp'")
+	  stop("Please create your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'")
 	if (missing(count))
 		count <- 16 
 	if (missing(meta))
