@@ -19,8 +19,8 @@ statItemList(
 statItemList Function
 }
 \examples{
-statItemList(api_key = your_api_key, lang = "en", count = 100, stat_code = "010Y002")
-statItemList(api_key = your_api_key, lang = "kr", count = 100, stat_code = "010Y002")
+statItemList(api_key = your_api_key, lang = "en", count = 100, stat_code = "902Y001")
+statItemList(api_key = your_api_key, lang = "kr", count = 100, stat_code = "902Y001")
 
 }
 \keyword{ecos,}
