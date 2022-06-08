@@ -5,6 +5,7 @@ importFrom(XML, xpathApply)
 importFrom(XML, xmlToList)
 importFrom(XML, xmlToDataFrame)
 importFrom(jsonlite, fromJSON)
+importFrom(stringr, str_pad)
 
 export(keyStatList)
 export(statItemList)
