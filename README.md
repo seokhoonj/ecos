@@ -21,8 +21,4 @@ Please insert item_code: US
 
 # or simply
 interest_rate <- statSearch(api_key = _your_api_token_, stat_code = "902Y006", item_code = "US")
-
-# data search (using item_code, item_code2 and item_code3)
-non_bank_loans <- statSearch(api_key, stat_code = "088Y015", item_code = "AEX10000", item_code2 = "0920", item_code3 = "U00")
 ```
-
