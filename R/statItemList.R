@@ -5,8 +5,8 @@
 #' @keywords ecos, statItemList 
 #' @export
 #' @examples
-#' statItemList(api_key = your_api_key, lang = "en", count = 100, stat_code = "010Y002")
-#' statItemList(api_key = your_api_key, lang = "kr", count = 100, stat_code = "010Y002")
+#' statItemList(api_key = your_api_key, lang = "en", count = 100, stat_code = "902Y001")
+#' statItemList(api_key = your_api_key, lang = "kr", count = 100, stat_code = "902Y001")
 #' 
 statItemList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, stat_code) {
 	if (missing(api_key))
@@ -14,7 +14,7 @@ statItemList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"
 	if (missing(count))
 		count <- 100
 	if (missing(stat_code))
-		stat_code <- "010Y002"
+		stat_code <- "902Y001"
 	if (format[[1]] == "xml") {
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticItemList/%s/%s/%s/1/%s/%s/", 
 		                         api_key, format[[1]], lang[[1]], count, stat_code))
