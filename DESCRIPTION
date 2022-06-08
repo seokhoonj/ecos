@@ -11,5 +11,5 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.5.0)
-Imports: httr (>= 1.4.3), jsonlite (>= 1.7.2), XML (>= 3.99)
-RoxygenNote: 7.1.1
+Imports: httr (>= 1.4.3), jsonlite (>= 1.7.2), XML (>= 3.99), stringr (>= 1.4.0)
+RoxygenNote: 7.1.2
