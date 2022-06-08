@@ -13,8 +13,8 @@ statWord(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, word)
 statWord Function
 }
 \examples{
-statWord(api_key = your_api_key, format = "xml", lang = "en", count = 10, word = "CPIS")
-statWord(api_key = your_api_key, format = "xml", lang = "kr", count = 10, word = "CPIS")
+statWord(api_key = your_api_key, lang = "en", count = 10, word = "CPIS")
+statWord(api_key = your_api_key, lang = "kr", count = 10, word = "CPIS")
 
 }
 \keyword{ecos,}

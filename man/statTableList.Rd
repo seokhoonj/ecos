@@ -13,8 +13,8 @@ statTableList(api_key, format = c("xml", "json"), lang = c("kr", "en"), count)
 statTableList Function
 }
 \examples{
-statTableList(api_key = your_api_key, format = "xml", lang = "en", count = 1000)
-statTableList(api_key = your_api_key, format = "xml", lang = "kr", count = 1000)
+statTableList(api_key = your_api_key, lang = "en", count = 1000)
+statTableList(api_key = your_api_key, lang = "kr", count = 1000)
 
 }
 \keyword{ecos,}

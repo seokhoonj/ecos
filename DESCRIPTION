@@ -1,6 +1,6 @@
 Package: ecos
 Title: Economic Statistics System of the Bank of Korea for R users
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person(given = "Seokhoon",
            family = "Joo",
@@ -11,5 +11,5 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.5.0)
-Imports: RCurl (>= 1.98), jsonlite (>= 1.7.2), XML (>= 3.99)
+Imports: httr (>= 1.4.3), jsonlite (>= 1.7.2), XML (>= 3.99)
 RoxygenNote: 7.1.1

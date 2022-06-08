@@ -13,8 +13,7 @@ statMeta(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, meta)
 statMeta Function
 }
 \examples{
-statMeta(api_key = your_api_key, format = "xml", lang = "en", count = 16, meta = "Economic Sentiment Index")
-statMeta(api_key = your_api_key, format = "xml", lang = "kr", count = 16, meta = "경제심리지수")
+statMeta(api_key = your_api_key, lang = "en", count = 16, meta = "Economic Sentiment Index")
 
 }
 \keyword{ecos,}

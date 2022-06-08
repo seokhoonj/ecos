@@ -25,8 +25,10 @@ statSearch(
 statSearch Function
 }
 \examples{
-statSearch(api_key = your_api_key, format = "xml", lang = "en", stat_code = "085Y007", item_code = "S25B", cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
-statSearch(api_key = your_api_key, format = "xml", lang = "kr", stat_code = "085Y007", item_code = "S25B", cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
+statSearch(api_key = your_api_key, lang = "en", stat_code = "085Y007", item_code = "S25B", 
+cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
+statSearch(api_key = your_api_key, lang = "kr", stat_code = "085Y007", item_code = "S25B", 
+cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
 
 }
 \keyword{ecos,}
