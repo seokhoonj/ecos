@@ -9,9 +9,10 @@ statSearch(
   format = c("xml", "json"),
   lang = c("kr", "en"),
   stat_code,
-  item_code,
+  item_code1,
   item_code2,
   item_code3,
+  item_code4,
   cycle,
   start_time,
   end_time,
@@ -19,16 +20,16 @@ statSearch(
 )
 }
 \arguments{
-\item{api_key, format, lang, count, stat_code, cycle, start_time, end_time, item_code, item_code2, item_code3}{input parameters}
+\item{api_key, format, lang, count, stat_code, cycle, start_time, end_time, item_code1, item_code2, item_code3, item_code4}{input parameters}
 }
 \description{
 statSearch Function
 }
 \examples{
-statSearch(api_key = your_api_key, lang = "en", stat_code = "085Y007", item_code = "S25B", 
-cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
-statSearch(api_key = your_api_key, lang = "kr", stat_code = "085Y007", item_code = "S25B", 
-cycle = "MM", start_time = "196001", end_time = "201812", count = 1000)
+statSearch(api_key = your_api_key, lang = "en", stat_code = "102Y004", item_code1 = "ABA1", 
+cycle = "M", start_time = "196001", end_time = "201812", count = 1000)
+statSearch(api_key = your_api_key, lang = "kr", stat_code = "102Y004", item_code1 = "ABA1", 
+cycle = "M", start_time = "196001", end_time = "201812", count = 1000)
 
 }
 \keyword{ecos,}
