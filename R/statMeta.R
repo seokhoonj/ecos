@@ -22,7 +22,7 @@ statMeta <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), c
 		xml_all <- xmlParse(content)
 		if (is.null(unlist(xpathApply(xml_all, "//RESULT")))) {
 			xml_cnt <- xpathApply(xml_all, "//list_total_count")[[1]]
-			cnt <- as.integer(xmlToList(xml_cnt))
+			cnt <- as.integer(xmlToList(xml_cnt)[[1]])
 			xml_row <- xpathApply(xml_all, "//row") 
 			df <- xmlToDataFrame(xml_row, stringsAsFactors = FALSE)
 			names(df) <- tolower(names(df))

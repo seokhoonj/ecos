@@ -51,11 +51,12 @@ statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"),
 		xml_all <- xmlParse(content)
 		if (is.null(unlist(xpathApply(xml_all, "//RESULT")))) {
 			xml_cnt <- xpathApply(xml_all, "//list_total_count")[[1]]
-			cnt <- as.integer(xmlToList(xml_cnt))
+			cnt <- as.integer(xmlToList(xml_cnt)[[1]])
 			xml_row <- xpathApply(xml_all, "//row") 
 			df <- xmlToDataFrame(xml_row, stringsAsFactors = FALSE)
 			df[] <- lapply(df, trimws)
 			names(df) <- tolower(names(df))
+			df <- df[order(df$time),]
 			df$data_value <- as.numeric(df$data_value)
 			attr(df, "list_total_count") <- cnt 
 		} else {
@@ -75,6 +76,7 @@ statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"),
 			df[] <- lapply(df, trimws)
 			names(df) <- tolower(names(df))
 			df$data_value <- as.numeric(df$data_value)
+			df <- df[order(df$time),]
 			attr(df, "list_total_count") <- cnt 
 		} else {
 			code <- json_all$RESULT$CODE	
