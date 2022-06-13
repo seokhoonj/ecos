@@ -3,5 +3,10 @@
 *.Rhistory
 *.RData
 *.zip
+*.csv
+*.xlsx
+*.png
+*.jpg
+*.jpeg
 
 .Rproj.user
