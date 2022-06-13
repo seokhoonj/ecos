@@ -56,7 +56,7 @@ statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"),
 			df <- xmlToDataFrame(xml_row, stringsAsFactors = FALSE)
 			df[] <- lapply(df, trimws)
 			names(df) <- tolower(names(df))
-			df <- df[order(df$time),]
+			# df <- df[order(df$time),]
 			df$data_value <- as.numeric(df$data_value)
 			attr(df, "list_total_count") <- cnt 
 		} else {
@@ -76,7 +76,7 @@ statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"),
 			df[] <- lapply(df, trimws)
 			names(df) <- tolower(names(df))
 			df$data_value <- as.numeric(df$data_value)
-			df <- df[order(df$time),]
+			# df <- df[order(df$time),]
 			attr(df, "list_total_count") <- cnt 
 		} else {
 			code <- json_all$RESULT$CODE	
