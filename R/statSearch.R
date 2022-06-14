@@ -43,6 +43,8 @@ statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"),
 	  end_time <- item_args$end_time
 	if (missing(count)) 
 	  count <- item_args$data_cnt
+	start_time <- cycleDateFormat(start_time, cycle)
+	end_time <- cycleDateFormat(end_time, cycle)
 	if (format[[1]] == "xml") {
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/%s/%s/%s", 
 		                         api_key, format[[1]], lang[[1]], count, stat_code, cycle, start_time, end_time, item_code1, item_code2, item_code3, item_code4))
@@ -56,7 +58,7 @@ statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"),
 			df <- xmlToDataFrame(xml_row, stringsAsFactors = FALSE)
 			df[] <- lapply(df, trimws)
 			names(df) <- tolower(names(df))
-			# df <- df[order(df$time),]
+			df <- df[order(df$time),]
 			df$data_value <- as.numeric(df$data_value)
 			attr(df, "list_total_count") <- cnt 
 		} else {
@@ -76,7 +78,7 @@ statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"),
 			df[] <- lapply(df, trimws)
 			names(df) <- tolower(names(df))
 			df$data_value <- as.numeric(df$data_value)
-			# df <- df[order(df$time),]
+			df <- df[order(df$time),]
 			attr(df, "list_total_count") <- cnt 
 		} else {
 			code <- json_all$RESULT$CODE	
