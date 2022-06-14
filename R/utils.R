@@ -1,7 +1,7 @@
 
-# cycle date format -------------------------------------------------------
+# cycle time format -------------------------------------------------------
 
-cycleDateFormatTest <- function(x, cycle) {
+cycleTimeFormat <- function(x, cycle) {
   if (cycle == "D") {
     if (grepl("^[0-9]{4}[01][0-9][0-3][0-9]$", x, perl = TRUE)) {
     } else if (grepl("^[0-9]{4}[01][0-9]S[12]$", x, perl = TRUE)) {
@@ -163,7 +163,7 @@ cycleDateFormatTest <- function(x, cycle) {
   return(x)
 }
 
-cycleDateFormat <- function(x, cycle) {
+cycleTimeFormat <- function(x, cycle) {
   if (cycle == "D") {
     if (grepl("^[0-9]{4}[01][0-9][0-3][0-9]$", x, perl = TRUE)) {
     } else if (grepl("^[0-9]{4}[01][0-9]S[12]$", x, perl = TRUE)) {
@@ -275,6 +275,43 @@ cycleDateFormat <- function(x, cycle) {
   return(x)
 }
 
+# calendar ----------------------------------------------------------------
+
+setCalendar <- function() {
+  d <- format(as.Date(0:47482, origin = "1970-01-01"), "%Y%m%d")
+  m <- substr(d, 1, 6)
+  a <- substr(d, 1, 4)
+  
+  sm <- paste0(m, ifelse(substr(d, 7, 8) < 16, "S1", "S2"))
+  
+  mon <- as.numeric(substr(d, 5, 6))
+  quarter <- ifelse(mon < 4, "Q1", ifelse(mon < 7, "Q2", ifelse(mon < 10, "Q3", ifelse(mon <= 12, "Q4", ""))))
+  q <- paste0(year, quarter) 
+  
+  half <- ifelse(mon < 7, "S1", ifelse(mon <= 12, "S2", ""))
+  s <- paste0(year, half)
+  
+  data.frame(D = d, SM = sm, M = m, Q = q, S = s, A = y)
+}
+  
+getCalendarTime <- function(x, cycle) {
+  if (grepl("^[0-9]{4}[01][0-9][0-3][0-9]$", x, perl = TRUE)) {
+    z <- CALENDAR[CALENDAR$D == x,][[cycle]]
+  } else if (grepl("^[0-9]{4}[01][0-9]S[12]$", x, perl = TRUE)) {
+    z <- CALENDAR[CALENDAR$SM == x,][[cycle]]
+  } else if (grepl("^[0-9]{4}[01][0-9]$", x, perl = TRUE)) {
+    z <- CALENDAR[CALENDAR$M == x,][[cycle]]
+  } else if (grepl("^[0-9]{4}Q[1-4]$", x, perl = TRUE)) {
+    z <- CALENDAR[CALENDAR$Q == x,][[cycle]]
+  } else if (grepl("^[0-9]{4}S[12]$", x, perl = TRUE)) {
+    z <- CALENDAR[CALENDAR$S == x,][[cycle]]
+  } else if (grepl("^[0-9]{4}$", x, perl = TRUE)) {
+    z <- CALENDAR[CALENDAR$A == x,][[cycle]]
+  } else {
+    stop("invalid date format")
+  }
+  return(unique(z))
+}
 
 # print -------------------------------------------------------------------
 
