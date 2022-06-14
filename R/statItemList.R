@@ -13,8 +13,12 @@ statItemList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"
 	  stop("Please create your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'")
 	if (missing(count))
 		count <- 100
-	if (missing(stat_code))
-		stat_code <- "902Y001"
+	if (missing(stat_code)) {
+	  options("max.print" = .Machine$integer.max)
+	  showStatTableList(api_key)
+	  options("max.print" = 1e3)
+	  stat_code <- readline("Please insert stat_code: ")
+	}
 	if (format[[1]] == "xml") {
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticItemList/%s/%s/%s/1/%s/%s/", 
 		                         api_key, format[[1]], lang[[1]], count, stat_code))
