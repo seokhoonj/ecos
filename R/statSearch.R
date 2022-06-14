@@ -48,7 +48,6 @@ statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"),
 	if (format[[1]] == "xml") {
 		url <- URLencode(sprintf("http://ecos.bok.or.kr/api/StatisticSearch/%s/%s/%s/1/%s/%s/%s/%s/%s/%s/%s/%s/%s", 
 		                         api_key, format[[1]], lang[[1]], count, stat_code, cycle, start_time, end_time, item_code1, item_code2, item_code3, item_code4))
-		cat(url, "\n")
 		html <- GET(url)
 		content <- rawToChar(html$content)
 		xml_all <- xmlParse(content)
