@@ -296,17 +296,17 @@ setCalendar <- function() {
   
 getCalendarTime <- function(x, cycle) {
   if (grepl("^[0-9]{4}[01][0-9][0-3][0-9]$", x, perl = TRUE)) {
-    z <- CALENDAR[CALENDAR$D == x,][[cycle]]
+    z <- calendar[calendar$D == x,][[cycle]]
   } else if (grepl("^[0-9]{4}[01][0-9]S[12]$", x, perl = TRUE)) {
-    z <- CALENDAR[CALENDAR$SM == x,][[cycle]]
+    z <- calendar[calendar$SM == x,][[cycle]]
   } else if (grepl("^[0-9]{4}[01][0-9]$", x, perl = TRUE)) {
-    z <- CALENDAR[CALENDAR$M == x,][[cycle]]
+    z <- calendar[calendar$M == x,][[cycle]]
   } else if (grepl("^[0-9]{4}Q[1-4]$", x, perl = TRUE)) {
-    z <- CALENDAR[CALENDAR$Q == x,][[cycle]]
+    z <- calendar[calendar$Q == x,][[cycle]]
   } else if (grepl("^[0-9]{4}S[12]$", x, perl = TRUE)) {
-    z <- CALENDAR[CALENDAR$S == x,][[cycle]]
+    z <- calendar[calendar$S == x,][[cycle]]
   } else if (grepl("^[0-9]{4}$", x, perl = TRUE)) {
-    z <- CALENDAR[CALENDAR$A == x,][[cycle]]
+    z <- calendar[calendar$A == x,][[cycle]]
   } else {
     stop("invalid date format")
   }
