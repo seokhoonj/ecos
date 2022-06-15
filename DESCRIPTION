@@ -1,12 +1,14 @@
 Package: ecos
 Title: Economic Statistics System of the Bank of Korea for R users
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     person(given = "Seokhoon",
            family = "Joo",
            role = c("aut", "cre"),
            email = "seokhoonj@gmail.com")
-Description: You can access economic statistics system of the Bank of Korea using the open API.
+Description: If you get the Economic Statistics Open API authentication key, 
+             you can download statistical information from the Economic Statistics System (ECOS) 
+             of the Bank of Korea in real time.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

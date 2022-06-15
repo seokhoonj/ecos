@@ -2,7 +2,7 @@
 % Please edit documentation in R/statItemList.R
 \name{statItemList}
 \alias{statItemList}
-\title{Item List of Statistics}
+\title{statItemList Function}
 \usage{
 statItemList(
   api_key,
@@ -13,14 +13,23 @@ statItemList(
 )
 }
 \arguments{
-\item{api_key, format, lang, count, stat_code}{input parameters}
+\item{api_key}{Open API authentication key issued by the Bank of Korea}
+
+\item{format}{File format of the result value - xml, json}
+
+\item{lang}{Language of result value - kr (Korean), en (English)}
+
+\item{count}{Number of requests}
+
+\item{stat_code}{Statistical table code}
 }
 \description{
-statItemList Function
+Item List of Statistics
 }
 \examples{
-statItemList(api_key = your_api_key, lang = "en", count = 100, stat_code = "902Y001")
-statItemList(api_key = your_api_key, lang = "kr", count = 100, stat_code = "902Y001")
+# do not test -- needs an API key
+# statItemList(api_key = your_api_key, lang = "en", count = 100, stat_code = "902Y001")
+# statItemList(api_key = your_api_key, lang = "kr", count = 100, stat_code = "902Y001")
 
 }
 \keyword{ecos,}

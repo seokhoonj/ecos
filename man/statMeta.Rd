@@ -2,18 +2,28 @@
 % Please edit documentation in R/statMeta.R
 \name{statMeta}
 \alias{statMeta}
-\title{Statistics Meta}
+\title{statMeta Function}
 \usage{
 statMeta(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, meta)
 }
 \arguments{
-\item{api_key, format, lang, count, meta}{input parameters}
+\item{api_key}{Open API authentication key issued by the Bank of Korea}
+
+\item{format}{File format of the result value - xml, json}
+
+\item{lang}{Language of result value - kr (Korean), en (English)}
+
+\item{count}{Number of requests}
+
+\item{meta}{data name}
 }
 \description{
-statMeta Function
+Statistics Meta DB
 }
 \examples{
-statMeta(api_key = your_api_key, lang = "en", count = 16, meta = "Economic Sentiment Index")
+# do not test -- needs an API key
+# statMeta(api_key = your_api_key, lang = "en", meta = "Economic Sentiment Index")
+# statMeta(api_key = your_api_key, lang = "kr", meta = "경제심리지수")
 
 }
 \keyword{ecos,}

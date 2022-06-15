@@ -13,8 +13,9 @@ keyStatList(api_key, format = c("xml", "json"), lang = c("kr", "en"), count)
 keyStatList Function
 }
 \examples{
-keyStatList(api_key = your_api_key, lang = "en", count = 100)
-keyStatList(api_key = your_api_key, lang = "kr", count = 100)
+# do not test -- needs an API key
+# keyStatList(api_key = your_api_key, lang = "en", count = 100)
+# keyStatList(api_key = your_api_key, lang = "kr", count = 100)
 
 }
 \keyword{ecos,}

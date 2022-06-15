@@ -2,19 +2,28 @@
 % Please edit documentation in R/statWord.R
 \name{statWord}
 \alias{statWord}
-\title{Glossary of Statistical Terms}
+\title{statWord Function}
 \usage{
 statWord(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, word)
 }
 \arguments{
-\item{api_key, format, lang, count, word}{input parameters}
+\item{api_key}{Open API authentication key issued by the Bank of Korea}
+
+\item{format}{File format of the result value - xml, json}
+
+\item{lang}{Language of result value - kr (Korean), en (English)}
+
+\item{count}{Number of requests}
+
+\item{word}{Terms}
 }
 \description{
-statWord Function
+Glossary of Statistical Terms
 }
 \examples{
-statWord(api_key = your_api_key, lang = "kr", count = 10, word = "CPIS")
-statWord(api_key = your_api_key, lang = "kr", count = 10, word = "소비자동향지수")
+# do not test -- needs an API key
+# statWord(api_key = your_api_key, lang = "kr", count = 10, word = "CPIS")
+# statWord(api_key = your_api_key, lang = "kr", count = 10, word = "소비자동향지수")
 
 }
 \keyword{ecos,}

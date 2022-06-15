@@ -2,7 +2,7 @@
 % Please edit documentation in R/statSearch.R
 \name{statSearch}
 \alias{statSearch}
-\title{Search Statistics}
+\title{statSearch Function}
 \usage{
 statSearch(
   api_key,
@@ -20,16 +20,39 @@ statSearch(
 )
 }
 \arguments{
-\item{api_key, format, lang, count, stat_code, cycle, start_time, end_time, item_code1, item_code2, item_code3, item_code4}{input parameters}
+\item{api_key}{Open API authentication key issued by the Bank of Korea}
+
+\item{format}{File format of the result value - xml, json}
+
+\item{lang}{Language of result value - kr (Korean), en (English)}
+
+\item{stat_code}{Statistical table code}
+
+\item{item_code1}{Statistical item 1 code}
+
+\item{item_code2}{Statistical item 2 code}
+
+\item{item_code3}{Statistical item 3 code}
+
+\item{item_code4}{Statistical item 4 code}
+
+\item{cycle}{Cycle (Annual: A, Semi-Annual: S, Quarterly: Q, Monthly: M, Semi-Monthly: SM, Daily: D)}
+
+\item{start_time}{Start date (according to cycle format: 2015, 2015S1, 2015Q1, 201501, 201501S1, 20150101, etc.)}
+
+\item{end_time}{End date (according to cycle format: 2015, 2015S1, 2015Q1, 201501, 201501S1, 20150101, etc.)}
+
+\item{count}{Number of requests}
 }
 \description{
-statSearch Function
+Search conditional statistics
 }
 \examples{
-statSearch(api_key = your_api_key, lang = "en", stat_code = "102Y004", item_code1 = "ABA1", 
-cycle = "M", start_time = "196001", end_time = "201812", count = 1000)
-statSearch(api_key = your_api_key, lang = "kr", stat_code = "102Y004", item_code1 = "ABA1", 
-cycle = "M", start_time = "196001", end_time = "201812", count = 1000)
+# do not test -- needs an API key
+# statSearch(api_key = your_api_key, lang = "en", stat_code = "102Y004", item_code1 = "ABA1", 
+# cycle = "M", start_time = "196001", end_time = "201812")
+# statSearch(api_key = your_api_key, lang = "kr", stat_code = "102Y004", item_code1 = "ABA1", 
+# cycle = "M", start_time = "196001", end_time = "201812")
 
 }
 \keyword{ecos,}

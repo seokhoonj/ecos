@@ -1,4 +1,5 @@
 
+importFrom(utils, URLencode)
 importFrom(httr, GET)
 importFrom(XML, xmlParse)
 importFrom(XML, xpathApply)

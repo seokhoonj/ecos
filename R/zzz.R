@@ -1,5 +1,5 @@
-.onLoad <- function(libname, pkgname) {
+.onAttach <- function(libname, pkgname) {
   packageStartupMessage(
-    "Please create your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'"
+    "Please get your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'"
   )
 }

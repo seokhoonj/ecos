@@ -7,14 +7,21 @@
 statTableList(api_key, format = c("xml", "json"), lang = c("kr", "en"), count)
 }
 \arguments{
-\item{api_key, format, lang, count}{input parameters}
+\item{api_key}{Open API authentication key issued by the Bank of Korea}
+
+\item{format}{File format of the result value - xml, json}
+
+\item{lang}{Language of result value - kr (Korean), en (English)}
+
+\item{count}{Number of requests}
 }
 \description{
 statTableList Function
 }
 \examples{
-statTableList(api_key = your_api_key, lang = "en", count = 1000)
-statTableList(api_key = your_api_key, lang = "kr", count = 1000)
+# do not test -- needs an API key
+# statTableList(api_key = your_api_key, lang = "en", count = 1000)
+# statTableList(api_key = your_api_key, lang = "kr", count = 1000)
 
 }
 \keyword{ecos,}
