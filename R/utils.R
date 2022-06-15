@@ -277,8 +277,9 @@ cycleTimeFormat <- function(x, cycle) {
 
 # calendar ----------------------------------------------------------------
 
-setCalendar <- function() {
-  d <- format(as.Date(0:47482, origin = "1970-01-01"), "%Y%m%d")
+setCalendar <- function(start, end) {
+  d <- format(as.Date(as.numeric(start):as.numeric(end), 
+                      origin = "1970-01-01"), "%Y%m%d")
   m <- substr(d, 1, 6)
   a <- substr(d, 1, 4)
   
@@ -286,12 +287,12 @@ setCalendar <- function() {
   
   mon <- as.numeric(substr(d, 5, 6))
   quarter <- ifelse(mon < 4, "Q1", ifelse(mon < 7, "Q2", ifelse(mon < 10, "Q3", ifelse(mon <= 12, "Q4", ""))))
-  q <- paste0(year, quarter) 
+  q <- paste0(a, quarter) 
   
   half <- ifelse(mon < 7, "S1", ifelse(mon <= 12, "S2", ""))
-  s <- paste0(year, half)
+  s <- paste0(a, half)
   
-  data.frame(D = d, SM = sm, M = m, Q = q, S = s, A = y)
+  data.frame(D = d, SM = sm, M = m, Q = q, S = s, A = a)
 }
   
 getCalendarTime <- function(x, cycle) {
