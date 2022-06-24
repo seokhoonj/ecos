@@ -53,6 +53,8 @@ Search conditional statistics
 # cycle = "M", start_time = "196001", end_time = "201812")
 # statSearch(api_key = your_api_key, lang = "kr", stat_code = "102Y004", item_code1 = "ABA1", 
 # cycle = "M", start_time = "196001", end_time = "201812")
+# statSearch(api_key = your_api_key, lang = "en", stat_code = "281Y005", item_code1 = "203020", 
+# item_code2 = "2", item_code3 = "C260", cycle = "A")
 
 }
 \keyword{ecos,}
