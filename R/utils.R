@@ -13,13 +13,67 @@ utils::globalVariables(c("calendar"))
 #' @keywords internal 
 #' 
 drawLine <- function(width, mark = "=") {
-  if (missing(width)) 
+  if (missing(width))
     width <- options()$width
-  line <- paste0(
-    paste0(
-      rep(mark, times = min(width, options()$width)
-    ), collapse = ""), "\n")
-  return(line)
+  paste0(paste0(rep(mark, times = min(width, options()$width)),
+                collapse = ""), "\n")
+}
+
+reduceRows <- function(x, n = 30L) {
+  tn <- nrow(x)
+  if (tn > 1e3)
+    return(rbind(head(x, n/2), tail(x, n/2)))
+  return(x)
+}
+
+na2str <- function(x)
+  if (is.character(x)) ifelse(is.na(x), "", x) else x
+
+repaste <- function(x) {
+  n <- length(x)
+  if (n == 1L) {
+    return(x[[1L]])
+  } else {
+    x[[n-1]] <- paste(x[[n-1]], "|", x[[n]])
+    x[[n]] <- NULL
+    repaste(x)
+  }
+}
+
+adjustColumnWidth <- function(x, hchar, fullcols = TRUE) {
+  df <- reduceRows(as.data.frame(x))
+  cols <- names(df)
+  nchar_cols <- nchar(cols)
+  notc_cols_no <- which(sapply(df, class) != "character")
+  if (length(notc_cols_no) > 0)
+    df[, notc_cols_no] <- lapply(df[, notc_cols_no, drop = FALSE], as.character)
+  width <- sapply(df, function(x) if (all(is.na(x))) 2L else max(nchar(x), na.rm = T))
+  if (fullcols)
+    width <- pmax(width, nchar_cols)
+  if (!missing(hchar))
+    width <- pmax(width, min(hchar, max(nchar_cols)))
+  df[] <- lapply(df, na2str)
+  side <- sapply(df, function(x) if (is.character(x)) "right" else "left")
+  df[] <- lapply(seq_along(df), function(x)
+    str_pad(df[[x]], width = width[x], side = side[x]))
+  abb_cols <- substr(names(width), 1L, width)
+  new_cols <- str_pad(abb_cols, width = width, pad = " ", side = "both")
+  names(df) <- new_cols
+  attr(df, "columns") <- cols
+  attr(df, "width") <- width
+  attr(df, "side") <- side
+  return(df)
+}
+
+hprint <- function(x, hchar, fullcols = TRUE) {
+  df <- adjustColumnWidth(x, fullcols)
+  txt <- repaste(df)
+  cols <- colnames(df)
+  cat(drawLine())
+  cat(paste0("| ", paste0(cols, collapse = " | "), "\n"))
+  cat(drawLine())
+  cat(paste0(paste0("| ", txt), collapse = "\n"), "\n")
+  cat(drawLine())
 }
 
 #' showStatTableList Function
@@ -32,23 +86,7 @@ drawLine <- function(width, mark = "=") {
 #' 
 showStatTableList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en")) {
   df <- statTableList(api_key = api_key, format = format[[1L]], lang = lang[[1L]])
-  nc_srch <- max(nchar(df$srch_yn))
-  nc_code <- max(nchar(df$stat_code))
-  nc_name <- max(nchar(df$stat_name))
-  iter <- nc_srch + nchar(" | ") + nc_code + nchar(" | ") + nc_name
-  # line <- drawLine(min(iter, options()$width))
-  line <- drawLine()
-  result <- paste0(
-    paste0(
-      str_pad(df$srch_yn, width = nc_srch, pad = " ", side = "right"),
-      " | ",
-      str_pad(df$stat_code, width = nc_code, pad = " ", side = "right"),
-      " | ", 
-      df$stat_name
-    ), collapse = "\n")
-  cat(line)
-  cat(result, "\n")
-  cat(line)
+  hprint(df[, c("srch_yn", "stat_code", "stat_name")])
 }
 
 #' showStatItemList Function
@@ -63,23 +101,7 @@ showStatTableList <- function(api_key, format = c("xml", "json"), lang = c("kr",
 showStatItemList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), stat_code) {
   df <- statItemList(api_key = api_key, format = format[[1L]], 
                      lang = lang[[1L]], stat_code = stat_code)
-  # nc_cycle <- max(nchar(df$cycle))
-  nc_code <- max(nchar(df$item_code))
-  nc_name <- max(nchar(df$item_name))
-  iter <- nc_cycle + nchar(" | ") + nc_code + nchar(" | ") + nc_name
-  # line <- drawLine(min(iter, options()$width))
-  line <- drawLine()
-  result <- paste0(
-    paste0(
-      # str_pad(df$cycle, width = nc_cycle, pad = " ", side = "right"),
-      # " | ", 
-      str_pad(df$item_code, width = nc_code, pad = " ", side = "right"),
-      " | ", 
-      df$item_name
-    ), collapse = "\n")
-  cat(line)
-  cat(result, "\n")
-  cat(line)
+  hprint(df[, c("cycle", "item_code", "item_name")])
 }
 
 #' orderStatSearchColumns Function
@@ -431,4 +453,3 @@ getCalendarTime <- function(x, cycle) {
 #   }
 #   return(x)
 # }
-
