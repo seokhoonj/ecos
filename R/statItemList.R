@@ -17,7 +17,7 @@ statItemList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"
 	if (missing(api_key))
 	  stop("Please create your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'")
 	if (missing(count))
-		count <- 100
+		count <- 1e3
 	if (missing(stat_code)) {
 	  options("max.print" = .Machine$integer.max)
 	  showStatTableList(api_key, format = format[[1L]], lang = lang[[1L]])
