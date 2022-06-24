@@ -21,6 +21,8 @@
 #' # cycle = "M", start_time = "196001", end_time = "201812")
 #' # statSearch(api_key = your_api_key, lang = "kr", stat_code = "102Y004", item_code1 = "ABA1", 
 #' # cycle = "M", start_time = "196001", end_time = "201812")
+#' # statSearch(api_key = your_api_key, lang = "en", stat_code = "281Y005", item_code1 = "203020", 
+#' # item_code2 = "2", item_code3 = "C260", cycle = "A")
 #' 
 statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), stat_code, item_code1, item_code2, item_code3, item_code4, cycle, start_time, end_time, count) {
 	if (missing(api_key)) 
@@ -47,14 +49,17 @@ statSearch <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"),
     item_code3 <- "?"
   if (missing(item_code4))
     item_code4 <- "?"
-	if (missing(cycle)) 
-	  cycle <- item_args$cycle
+	if (missing(cycle)) {
+	  cycle <- readline(sprintf("Please select cycle code (%s): ", 
+	                            paste0(item_args$cycle, collapse = ", ")))
+	}
+	pos <- which(item_args$cycle == cycle)
 	if (missing(start_time)) 
-	  start_time <- item_args$start_time
+	  start_time <- item_args$start_time[pos]
 	if (missing(end_time)) 
-	  end_time <- item_args$end_time
+	  end_time <- item_args$end_time[pos]
 	if (missing(count)) 
-	  count <- item_args$data_cnt
+	  count <- item_args$data_cnt[pos]
 	start_time <- min(getCalendarTime(start_time, cycle))
 	end_time <- max(getCalendarTime(end_time, cycle))
 	if (format[[1L]] == "xml") {
