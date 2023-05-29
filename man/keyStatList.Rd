@@ -2,21 +2,36 @@
 % Please edit documentation in R/keyStatList.R
 \name{keyStatList}
 \alias{keyStatList}
-\title{Top 100 Statistical Indicators}
+\title{Top 100 statistical indicators}
 \usage{
-keyStatList(api_key, format = c("xml", "json"), lang = c("kr", "en"), count)
+keyStatList(
+  api_key,
+  format = c("xml", "json"),
+  lang = c("kr", "en"),
+  count = 1000
+)
 }
 \arguments{
-\item{api_key, format, lang, count}{input parameters}
+\item{api_key}{A string specifying ECOS API key. Need not be specified if
+the key was stored as an environment variable via \code{\link{setKey}} or
+.Renviron.}
+
+\item{format}{A string specifying the file format to process - xml, json}
+
+\item{lang}{A string specifying the language of result value - kr (Korean),
+en (English)}
+
+\item{count}{An integer specifying the number of requests}
+}
+\value{
+A data.frame object containing queried information
 }
 \description{
-keyStatList Function
+Top 100 statistical indicators
 }
-\examples{
-# do not test -- needs an API key
-# keyStatList(api_key = your_api_key, lang = "en", count = 100)
-# keyStatList(api_key = your_api_key, lang = "kr", count = 100)
-
+\details{
+\preformatted{
+## Example
+keyStatList(lang = "en", count = 100)
 }
-\keyword{ecos,}
-\keyword{keyStatList}
+}

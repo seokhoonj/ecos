@@ -1,21 +1,94 @@
-
-# glabal variables --------------------------------------------------------
+#################################################################################
+## glabal variables
+#################################################################################
 
 utils::globalVariables(c("calendar"))
 
-# print -------------------------------------------------------------------
+#################################################################################
+## parse xml
+#################################################################################
+.parse_xml <- function(content, type = c("table", "item", "search", "meta",
+                                         "word", "keystat")) {
+  type <- match.arg(type)
+  xml_all <- xmlParse(content)
+  if (!is.null(unlist(xpathApply(xml_all, "//RESULT")))) {
+    code <- xmlToList(xpathApply(xml_all, "//CODE")[[1L]])
+    msg  <- xmlToList(xpathApply(xml_all, "//MESSAGE")[[1L]])
+    stop(paste0(code, "\n ", msg), call. = FALSE)
+  }
+  xml_cnt <- xpathApply(xml_all, "//list_total_count")[[1L]]
+  cnt <- as.integer(xmlToList(xml_cnt)[[1L]])
+  xml_row <- xpathApply(xml_all, "//row")
+  df <- xmlToDataFrame(xml_row, stringsAsFactors = FALSE)
+  if (type == "item") {
+    df$DATA_CNT <- as.numeric(df$DATA_CNT)
+  }
+  if (type == "search") {
+    df[] <- lapply(df, trimws)
+    df <- df[order(df$TIME),]
+    df$DATA_VALUE <- as.numeric(df$DATA_VALUE)
+  }
+  names(df) <- tolower(names(df))
+  attr(df, "list_total_count") <- cnt
+  df
+}
 
-#' drawLine Function
-#'
-#' @description draw a line
-#' @param width width
-#' @param mark mark
-#' @keywords internal 
-#' 
+#################################################################################
+## parse JSON
+#################################################################################
+.parse_json <- function(content, type = c("table", "item", "search", "meta",
+                                          "word", "keystat")) {
+  type <- match.arg(type)
+  json_all <- fromJSON(content)
+  if (!is.null(json_all$RESULT)) {
+    code <- json_all$RESULT$CODE
+    msg  <- json_all$RESULT$MESSAGE
+    stop(paste0(code, "\n ", msg), call. = FALSE)
+  }
+  if (type == "table") {
+    cnt <- json_all$StatisticTableList$list_total_count
+    df  <- json_all$StatisticTableList$row
+  } else if (type == "item") {
+    cnt <- json_all$StatisticItemList$list_total_count
+    df  <- json_all$StatisticItemList$row
+    df$DATA_CNT <- as.numeric(df$DATA_CNT)
+  } else if (type == "search") {
+    cnt  <- json_all$StatisticSearch$list_total_count
+    df   <- json_all$StatisticSearch$row
+    df[] <- lapply(df, trimws)
+    df$DATA_VALUE <- as.numeric(df$DATA_VALUE)
+    df <- df[order(df$TIME),]
+  } else if (type == "meta") {
+    cnt <- json_all$StatisticMeta$list_total_count
+    df  <- json_all$StatisticMeta$row
+  } else if (type == "word"){
+    cnt <- json_all$StatisticWord$list_total_count
+    df  <- json_all$StatisticWord$row
+  } else {
+    cnt <- json_all$KeyStatisticList$list_total_count
+    df  <- json_all$KeyStatisticList$row
+  }
+  names(df) <- tolower(names(df))
+  attr(df, "list_total_count") <- cnt
+  df
+}
+
+#################################################################################
+## print
+#################################################################################
+##' drawLine Function
+##'
+##' @description draw a line
+##' @param width width
+##' @param mark mark
+##' @keywords internal
+##'
 drawLine <- function(width, mark = "=") {
-  if (missing(width))
-    width <- options()$width
-  paste0(paste0(rep(mark, times = min(width, options()$width)),
+  if (missing(width)) {
+    width <- getOption("width")
+    ## width <- options()$width
+  }
+  paste0(paste0(rep(mark, times = min(width, getOption("width"))),
                 collapse = ""), "\n")
 }
 
@@ -76,45 +149,50 @@ hprint <- function(x, hchar, fullcols = TRUE) {
   cat(drawLine())
 }
 
-#' showStatTableList Function
-#'
-#' @description Show neat return object of statTableList function
-#' @param api_key Open API authentication key issued by the Bank of Korea
-#' @param format File format of the result value - xml, json
-#' @param lang Language of result value - kr (Korean), en (English)
-#' @keywords internal 
-#' 
+##' showStatTableList Function
+##'
+##' @description Show neat return object of statTableList function
+##' @param api_key Open API authentication key issued by the Bank of Korea
+##' @param format File format of the result value - xml, json
+##' @param lang Language of result value - kr (Korean), en (English)
+##' @keywords internal
+##'
 showStatTableList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en")) {
-  df <- statTableList(api_key = api_key, format = format[[1L]], lang = lang[[1L]])
+  format <- match.arg(format)
+  lang <- match.arg(lang)
+  df <- statTableList(api_key = api_key, format = format, lang = lang)
   hprint(df[, c("srch_yn", "stat_code", "stat_name")])
 }
 
-#' showStatItemList Function
-#'
-#' @description Show neat return object of statItemList function
-#' @param api_key Open API authentication key issued by the Bank of Korea
-#' @param format File format of the result value - xml, json
-#' @param lang Language of result value - kr (Korean), en (English)
-#' @param stat_code Statistical table code
-#' @keywords internal 
-#' 
-showStatItemList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en"), stat_code) {
-  df <- statItemList(api_key = api_key, format = format[[1L]], 
-                     lang = lang[[1L]], stat_code = stat_code)
+##' showStatItemList Function
+##'
+##' @description Show neat return object of statItemList function
+##' @param api_key Open API authentication key issued by the Bank of Korea
+##' @param format File format of the result value - xml, json
+##' @param lang Language of result value - kr (Korean), en (English)
+##' @param stat_code Statistical table code
+##' @keywords internal
+##'
+showStatItemList <- function(api_key, format = c("xml", "json"),
+                             lang = c("kr", "en"), stat_code) {
+  format <- match.arg(format)
+  lang <- match.arg(lang)
+  df <- statItemList(api_key = api_key, format = format,
+                     lang = lang, stat_code = stat_code)
   hprint(df[, c("cycle", "item_code", "item_name")])
 }
 
-#' orderStatSearchColumns Function
-#'
-#' @description check and sort column order 
-#' @param x return object of function statSearch
-#' @keywords internal 
-#' 
+##' orderStatSearchColumns Function
+##'
+##' @description check and sort column order
+##' @param x return object of function statSearch
+##' @keywords internal
+##'
 orderStatSearchColumns <- function(x) {
   .statSearchColumns <- c(
-    "stat_code" , "stat_name", 
+    "stat_code" , "stat_name",
     "item_code1", "item_name1",
-    "item_code2", "item_name2", 
+    "item_code2", "item_name2",
     "item_code3", "item_name3",
     "item_code4", "item_name4",
     "time", "data_value", "unit_name"
@@ -125,40 +203,43 @@ orderStatSearchColumns <- function(x) {
   return(x)
 }
 
-# calendar ----------------------------------------------------------------
+#################################################################################
+## calendar
+#################################################################################
 
-#' setCalendar Function
-#'
-#' @description Set calendar data frame to covert date format according to a cycle argument
-#' @param start Start date
-#' @param end End date
-#' @keywords internal 
-#' 
+##' setCalendar Function
+##'
+##' @description Set calendar data frame to covert date format according to a
+##'   cycle argument
+##' @param start Start date
+##' @param end End date
+##' @keywords internal
+##'
 setCalendar <- function(start = "1900-01-01", end = "2099-12-31") {
-  d <- format(as.Date(as.numeric(as.Date(start)):as.numeric(as.Date(end)), 
+  d <- format(as.Date(as.numeric(as.Date(start)):as.numeric(as.Date(end)),
                       origin = "1970-01-01"), "%Y%m%d")
   m <- substr(d, 1, 6)
   a <- substr(d, 1, 4)
-  
   sm <- paste0(m, ifelse(substr(d, 7, 8) < 16, "S1", "S2")) # semi-monthly
-  
   mon <- as.numeric(substr(d, 5, 6))
-  quarter <- ifelse(mon < 4, "Q1", ifelse(mon < 7, "Q2", ifelse(mon < 10, "Q3", ifelse(mon <= 12, "Q4", ""))))
+  quarter <- ifelse(mon < 4, "Q1", ifelse(mon < 7, "Q2",
+                                   ifelse(mon < 10, "Q3",
+                                   ifelse(mon <= 12, "Q4", ""))))
   q <- paste0(a, quarter) # quarterly
-  
   half <- ifelse(mon < 7, "S1", ifelse(mon <= 12, "S2", ""))
   s <- paste0(a, half) # semi-annually
-  
   data.frame(D = d, SM = sm, M = m, Q = q, S = s, A = a)
 }
-  
-#' getCalendarTime Function
-#'
-#' @description convert 
-#' @param x Date (format: 2015, 2015S1, 2015Q1, 201501, 201501S1, 20150101, etc.)
-#' @param cycle Cycle (Annual: A, Semi-Annual: S, Quarterly: Q, Monthly: M, Semi-Monthly: SM, Daily: D)
-#' @keywords internal 
-#' 
+
+##' getCalendarTime Function
+##'
+##' @description convert
+##' @param x Date (format: 2015, 2015S1, 2015Q1, 201501, 201501S1, 20150101,
+##'   etc.)
+##' @param cycle Cycle (Annual: A, Semi-Annual: S, Quarterly: Q, Monthly: M,
+##'   Semi-Monthly: SM, Daily: D)
+##' @keywords internal
+##'
 getCalendarTime <- function(x, cycle) {
   if (grepl("^[0-9]{4}[01][0-9][0-3][0-9]$", x, perl = TRUE)) {
     z <- calendar[calendar$D == x,][[cycle]]

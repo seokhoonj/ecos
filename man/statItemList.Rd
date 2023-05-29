@@ -2,35 +2,39 @@
 % Please edit documentation in R/statItemList.R
 \name{statItemList}
 \alias{statItemList}
-\title{statItemList Function}
+\title{Item list of statistics}
 \usage{
 statItemList(
   api_key,
+  stat_code,
   format = c("xml", "json"),
   lang = c("kr", "en"),
-  count,
-  stat_code
+  count = 1000
 )
 }
 \arguments{
-\item{api_key}{Open API authentication key issued by the Bank of Korea}
+\item{api_key}{A string specifying ECOS API key. Need not be specified if
+the key was stored as an environment variable via \code{\link{setKey}} or
+.Renviron.}
 
-\item{format}{File format of the result value - xml, json}
+\item{stat_code}{A string specifying the statistical table code}
 
-\item{lang}{Language of result value - kr (Korean), en (English)}
+\item{format}{A string specifying the file format to process - xml, json}
 
-\item{count}{Number of requests}
+\item{lang}{A string specifying the language of result value - kr (Korean),
+en (English)}
 
-\item{stat_code}{Statistical table code}
+\item{count}{An integer specifying the number of requests}
+}
+\value{
+A data.frame object containing queried information
 }
 \description{
-Item List of Statistics
+Item list of statistics
 }
-\examples{
-# do not test -- needs an API key
-# statItemList(api_key = your_api_key, lang = "en", count = 100, stat_code = "902Y001")
-# statItemList(api_key = your_api_key, lang = "kr", count = 100, stat_code = "902Y001")
-
+\details{
+\preformatted{
+## Example
+statItemList(lang = "en", count = 100, stat_code = "902Y001")
 }
-\keyword{ecos,}
-\keyword{statItemList}
+}

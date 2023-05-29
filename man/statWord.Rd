@@ -2,29 +2,39 @@
 % Please edit documentation in R/statWord.R
 \name{statWord}
 \alias{statWord}
-\title{statWord Function}
+\title{Glossary of Statistical Terms}
 \usage{
-statWord(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, word)
+statWord(
+  api_key,
+  word,
+  format = c("xml", "json"),
+  lang = c("kr", "en"),
+  count = 1000
+)
 }
 \arguments{
-\item{api_key}{Open API authentication key issued by the Bank of Korea}
+\item{api_key}{A string specifying ECOS API key. Need not be specified if
+the key was stored as an environment variable via \code{\link{setKey}} or
+.Renviron.}
 
-\item{format}{File format of the result value - xml, json}
+\item{word}{A string specifying the term to search}
 
-\item{lang}{Language of result value - kr (Korean), en (English)}
+\item{format}{A string specifying the file format to process - xml, json}
 
-\item{count}{Number of requests}
+\item{lang}{A string specifying the language of result value - kr (Korean),
+en (English)}
 
-\item{word}{Terms}
+\item{count}{An integer specifying the number of requests}
+}
+\value{
+A data.frame object containing queried information
 }
 \description{
 Glossary of Statistical Terms
 }
-\examples{
-# do not test -- needs an API key
-# statWord(api_key = your_api_key, lang = "kr", count = 10, word = "CPIS")
-# statWord(api_key = your_api_key, lang = "kr", count = 10, word = "소비자동향지수")
-
+\details{
+\preformatted{
+## Example
+statWord(word = "CPI", lang = "en")
 }
-\keyword{ecos,}
-\keyword{statMeta}
+}

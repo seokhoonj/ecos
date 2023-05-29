@@ -2,29 +2,39 @@
 % Please edit documentation in R/statMeta.R
 \name{statMeta}
 \alias{statMeta}
-\title{statMeta Function}
+\title{Retrieve statistical meta DB}
 \usage{
-statMeta(api_key, format = c("xml", "json"), lang = c("kr", "en"), count, meta)
+statMeta(
+  api_key,
+  meta,
+  format = c("xml", "json"),
+  lang = c("kr", "en"),
+  count = 1000
+)
 }
 \arguments{
-\item{api_key}{Open API authentication key issued by the Bank of Korea}
+\item{api_key}{A string specifying ECOS API key. Need not be specified if
+the key was stored as an environment variable via \code{\link{setKey}} or
+.Renviron.}
 
-\item{format}{File format of the result value - xml, json}
+\item{meta}{A string specifying the name of meta DB to query}
 
-\item{lang}{Language of result value - kr (Korean), en (English)}
+\item{format}{A string specifying the file format to process - xml, json}
 
-\item{count}{Number of requests}
+\item{lang}{A string specifying the language of result value - kr (Korean),
+en (English)}
 
-\item{meta}{data name}
+\item{count}{An integer specifying the number of requests}
+}
+\value{
+A data.frame object containing queried information
 }
 \description{
-Statistics Meta DB
+Retrieve statistical meta DB
 }
-\examples{
-# do not test -- needs an API key
-# statMeta(api_key = your_api_key, lang = "en", meta = "Economic Sentiment Index")
-# statMeta(api_key = your_api_key, lang = "kr", meta = "경제심리지수")
-
+\details{
+\preformatted{
+## Example
+statMeta(lang = "en", meta = "Economic Sentiment Index")
 }
-\keyword{ecos,}
-\keyword{statMeta}
+}
