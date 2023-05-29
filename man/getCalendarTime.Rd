@@ -7,9 +7,11 @@
 getCalendarTime(x, cycle)
 }
 \arguments{
-\item{x}{Date (format: 2015, 2015S1, 2015Q1, 201501, 201501S1, 20150101, etc.)}
+\item{x}{Date (format: 2015, 2015S1, 2015Q1, 201501, 201501S1, 20150101,
+etc.)}
 
-\item{cycle}{Cycle (Annual: A, Semi-Annual: S, Quarterly: Q, Monthly: M, Semi-Monthly: SM, Daily: D)}
+\item{cycle}{Cycle (Annual: A, Semi-Annual: S, Quarterly: Q, Monthly: M,
+Semi-Monthly: SM, Daily: D)}
 }
 \description{
 convert

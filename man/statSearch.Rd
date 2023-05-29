@@ -2,60 +2,61 @@
 % Please edit documentation in R/statSearch.R
 \name{statSearch}
 \alias{statSearch}
-\title{statSearch Function}
+\title{Search conditional statistics}
 \usage{
 statSearch(
   api_key,
-  format = c("xml", "json"),
-  lang = c("kr", "en"),
   stat_code,
   item_code1,
-  item_code2,
-  item_code3,
-  item_code4,
+  item_code2 = "?",
+  item_code3 = "?",
+  item_code4 = "?",
   cycle,
   start_time,
   end_time,
+  format = c("xml", "json"),
+  lang = c("kr", "en"),
   count
 )
 }
 \arguments{
-\item{api_key}{Open API authentication key issued by the Bank of Korea}
+\item{api_key}{A string specifying ECOS API key. Need not be specified if
+the key was stored as an environment variable via \code{\link{setKey}} or
+.Renviron.}
 
-\item{format}{File format of the result value - xml, json}
+\item{stat_code}{A string specifying the statistical table code}
 
-\item{lang}{Language of result value - kr (Korean), en (English)}
+\item{item_code1}{A string specifying the statistical item 1 code}
 
-\item{stat_code}{Statistical table code}
+\item{item_code2}{A string specifying the statistical item 2 code}
 
-\item{item_code1}{Statistical item 1 code}
+\item{item_code3}{A string specifying the statistical item 3 code}
 
-\item{item_code2}{Statistical item 2 code}
+\item{item_code4}{A string specifying the statistical item 4 code}
 
-\item{item_code3}{Statistical item 3 code}
+\item{cycle}{A string specifying the cycle (Annual: A, Semi-Annual: S,
+Quarterly: Q, Monthly: M, Semi-Monthly: SM, Daily: D)}
 
-\item{item_code4}{Statistical item 4 code}
+\item{start_time}{A string specifying the start date (according to cycle
+format: 2015, 2015S1, 2015Q1, 201501, 201501S1, 20150101, etc.)}
 
-\item{cycle}{Cycle (Annual: A, Semi-Annual: S, Quarterly: Q, Monthly: M, Semi-Monthly: SM, Daily: D)}
+\item{end_time}{A string specifying the end date (according to cycle format:
+2015, 2015S1, 2015Q1, 201501, 201501S1, 20150101, etc.)}
 
-\item{start_time}{Start date (according to cycle format: 2015, 2015S1, 2015Q1, 201501, 201501S1, 20150101, etc.)}
+\item{format}{A string specifying the file format to process - xml, json}
 
-\item{end_time}{End date (according to cycle format: 2015, 2015S1, 2015Q1, 201501, 201501S1, 20150101, etc.)}
+\item{lang}{A string specifying the language of result value - kr (Korean),
+en (English)}
 
-\item{count}{Number of requests}
+\item{count}{An integer specifying the number of requests}
 }
 \description{
 Search conditional statistics
 }
-\examples{
-# do not test -- needs an API key
-# statSearch(api_key = your_api_key, lang = "en", stat_code = "102Y004", item_code1 = "ABA1", 
-# cycle = "M", start_time = "196001", end_time = "201812")
-# statSearch(api_key = your_api_key, lang = "kr", stat_code = "102Y004", item_code1 = "ABA1", 
-# cycle = "M", start_time = "196001", end_time = "201812")
-# statSearch(api_key = your_api_key, lang = "en", stat_code = "281Y005", item_code1 = "203020", 
-# item_code2 = "2", item_code3 = "C260", cycle = "A")
-
+\details{
+\preformatted{
+## Example
+statSearch(lang = "en", stat_code = "102Y004", item_code1 = "ABA1", cycle =
+"M", start_time = "196001", end_time = "201812")
 }
-\keyword{ecos,}
-\keyword{statSearch}
+}

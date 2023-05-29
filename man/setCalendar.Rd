@@ -12,6 +12,7 @@ setCalendar(start = "1900-01-01", end = "2099-12-31")
 \item{end}{End date}
 }
 \description{
-Set calendar data frame to covert date format according to a cycle argument
+Set calendar data frame to covert date format according to a
+  cycle argument
 }
 \keyword{internal}
