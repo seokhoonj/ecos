@@ -32,16 +32,15 @@ statSearch <- function(api_key, stat_code, item_code1, item_code2 = "?",
                        cycle, start_time, end_time, format = c("xml", "json"),
                        lang = c("kr", "en"), count) {
 	if (missing(api_key)) {
-	  ## stop("Please create your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'")
+	  # stop("Please create your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'")
     api_key <- .getKey()
   }
   format <- match.arg(format)
   lang <- match.arg(lang)
 	if (missing(stat_code)) {
-	  op <- options("max.print" = .Machine$integer.max)
+	  # op <- options("max.print" = .Machine$integer.max)
 	  showStatTableList(api_key = api_key, format = format, lang = lang)
-    options(op)
-	  ## options("max.print" = 1e3)
+	  # on.exit(op)
 	  stat_code <- readline("Please insert stat_code: ")
 	}
   item_list <- statItemList(api_key = api_key, format = format,

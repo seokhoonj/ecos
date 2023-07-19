@@ -18,7 +18,7 @@
 statTableList <- function(api_key, format = c("xml", "json"),
                           lang = c("kr", "en"), count = 1000) {
 	if (missing(api_key)) {
-	  ## stop("Please create your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'")
+	  # stop("Please create your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'")
     api_key <- .getKey()
   }
   format <- match.arg(format)
