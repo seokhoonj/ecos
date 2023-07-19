@@ -50,6 +50,9 @@ en (English)}
 
 \item{count}{An integer specifying the number of requests}
 }
+\value{
+A data.frame object containing queried information
+}
 \description{
 Search conditional statistics
 }

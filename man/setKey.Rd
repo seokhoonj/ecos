@@ -12,6 +12,9 @@ printKey()
 \arguments{
 \item{api_key}{A string specifying ECOS API key}
 }
+\value{
+No return value, called to set api key
+}
 \description{
 Save ECOS API key for the current session. To set it permanently, please add
 the following line to your .Renvrion file:

@@ -6,7 +6,7 @@
 \alias{ecos-package}
 \title{ecos: Economic Statistics System of the Bank of Korea}
 \description{
-R API wrapper to download statistical information from the Economic Statistics System (ECOS) of the Bank of Korea \url{https://ecos.bok.or.kr/}.
+API wrapper to download statistical information from the Economic Statistics System (ECOS) of the Bank of Korea \url{https://ecos.bok.or.kr/}.
 }
 \details{
 To use this package, you will first need to get your API key from the
