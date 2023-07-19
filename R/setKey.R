@@ -7,6 +7,7 @@
 ##' ECOS_API_KEY = YOUR API KEY
 ##'
 ##' @param api_key A string specifying ECOS API key
+##' @return No return value, called to set api key
 ##' @examples
 ##'
 ##' ## Set API Key for the current session
