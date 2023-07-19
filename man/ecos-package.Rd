@@ -4,7 +4,7 @@
 \name{ecos-package}
 \alias{ecos}
 \alias{ecos-package}
-\title{ecos: Economic Statistics System of the Bank of Korea for R users}
+\title{ecos: Economic Statistics System of the Bank of Korea}
 \description{
 R API wrapper to download statistical information from the Economic Statistics System (ECOS) of the Bank of Korea \url{https://ecos.bok.or.kr/}.
 }
