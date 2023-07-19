@@ -25,7 +25,7 @@
 ##' @param lang A string specifying the language of result value - kr (Korean),
 ##'   en (English)
 ##' @param count An integer specifying the number of requests
-##'
+##' @return A data.frame object containing queried information
 ##' @export
 statSearch <- function(api_key, stat_code, item_code1, item_code2 = "?",
                        item_code3 = "?", item_code4 = "?",
