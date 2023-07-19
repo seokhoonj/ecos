@@ -8,7 +8,7 @@ Authors@R: c(
            email = "seokhoonj@gmail.com"),
     person(given = "Jaehyun", family = "Joo", role = "ctb")
     )
-Description: R API wrapper to download statistical information from the Economic
+Description: API wrapper to download statistical information from the Economic
              Statistics System (ECOS) of the Bank of Korea
              <https://ecos.bok.or.kr/>.
 License: MIT + file LICENSE
