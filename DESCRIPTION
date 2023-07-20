@@ -10,7 +10,7 @@ Authors@R: c(
     )
 Description: API wrapper to download statistical information from the Economic
              Statistics System (ECOS) of the Bank of Korea
-             <https://ecos.bok.or.kr/>.
+             <https://ecos.bok.or.kr/api/#/>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
