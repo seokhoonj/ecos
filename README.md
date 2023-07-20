@@ -18,8 +18,7 @@ Economic Statistics System of Bank of Korea (Open API Service)\
 install.packages("ecos")
 
 # Alternatively
-if (!require(devtools)) install.packages("devtools"); require(devtools)  
-devtools::install_github("seokhoonj/ecos", force = TRUE)  
+devtools::install_github("seokhoonj/ecos")  
 ```
 
 ## examples
