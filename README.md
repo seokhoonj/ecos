@@ -26,11 +26,14 @@ devtools::install_github("seokhoonj/ecos")
 ``` r
 library(ecos)
 
+# set your api key
+setKey(api_key = _your_api_token_)
+
 # data search (if you don't know the stat_code / item_code)
-interest_rate <- statSearch(api_key = _your_api_token_)
+interest_rate <- statSearch()
 Please insert stat_code: 902Y006
 Please insert item_code1: US
 
 # or simply
-interest_rate <- statSearch(api_key = _your_api_token_, stat_code = "902Y006", item_code1 = "US")
+interest_rate <- statSearch(stat_code = "902Y006", item_code1 = "US", cycle = "M")
 ```
