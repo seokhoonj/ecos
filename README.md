@@ -9,7 +9,7 @@
 
 ## Introduction
 
-Economic Statistics System of Bank of Korea through the OPEN API\
+Economic Statistics System of Bank of Korea (Open API Service)\
 (<https://ecos.bok.or.kr/api/#/>)
 
 ## Installation
