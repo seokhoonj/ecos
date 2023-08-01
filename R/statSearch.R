@@ -7,9 +7,9 @@
 ##' "M", start_time = "196001", end_time = "201812")
 ##' }
 ##'
-##' @param api_key A string specifying ECOS API key. Need not be specified if
-##'   the key was stored as an environment variable via \code{\link{setKey}} or
-##'   .Renviron.
+## @param api_key A string specifying ECOS API key. Need not be specified if
+##   the key was stored as an environment variable via \code{\link{setKey}} or
+##   .Renviron.
 ##' @param stat_code A string specifying the statistical table code
 ##' @param item_code1 A string specifying the statistical item 1 code
 ##' @param item_code2 A string specifying the statistical item 2 code
@@ -27,27 +27,22 @@
 ##' @param count An integer specifying the number of requests
 ##' @return A data.frame object containing queried information
 ##' @export
-statSearch <- function(api_key, stat_code, item_code1, item_code2 = "?",
+statSearch <- function(stat_code, item_code1, item_code2 = "?",
                        item_code3 = "?", item_code4 = "?",
                        cycle, start_time, end_time, format = c("xml", "json"),
                        lang = c("kr", "en"), count) {
-	if (missing(api_key)) {
-	  # stop("Please create your api key from website 'https://ecos.bok.or.kr/api/#/AuthKeyApply'")
-    api_key <- .getKey()
-  }
+  api_key <- ecos.getKey()
   format <- match.arg(format)
   lang <- match.arg(lang)
 	if (missing(stat_code)) {
 	  # op <- options("max.print" = .Machine$integer.max)
-	  showStatTableList(api_key = api_key, format = format, lang = lang)
+	  showStatTableList(format = format, lang = lang)
 	  # on.exit(op)
 	  stat_code <- readline("Please insert stat_code: ")
 	}
-  item_list <- statItemList(api_key = api_key, format = format,
-                            lang = lang, stat_code = stat_code)
+  item_list <- statItemList(stat_code = stat_code, format = format, lang = lang)
 	if (missing(item_code1)) {
-	  showStatItemList(api_key = api_key, format = format,
-	                   lang = lang, stat_code = stat_code)
+	  showStatItemList(stat_code = stat_code, format = format, lang = lang)
 	  item_code1 <- readline("Please insert item_code1: ")
 	  item_args <- item_list[item_list$item_code == item_code1, ]
 	} else {
@@ -82,9 +77,9 @@ statSearch <- function(api_key, stat_code, item_code1, item_code2 = "?",
   html <- GET(url)
   content <- rawToChar(html$content)
 	if (format == "xml") {
-    df <- .parse_xml(content, type = "search")
+    df <- parseXML(content, type = "search")
 	} else {
-    df <- .parse_json(content, type = "search")
+    df <- parseJSON(content, type = "search")
 	}
 	orderStatSearchColumns(df)
 }

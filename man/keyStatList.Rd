@@ -4,18 +4,9 @@
 \alias{keyStatList}
 \title{Top 100 statistical indicators}
 \usage{
-keyStatList(
-  api_key,
-  format = c("xml", "json"),
-  lang = c("kr", "en"),
-  count = 1000
-)
+keyStatList(format = c("xml", "json"), lang = c("kr", "en"), count = 1000)
 }
 \arguments{
-\item{api_key}{A string specifying ECOS API key. Need not be specified if
-the key was stored as an environment variable via \code{\link{setKey}} or
-.Renviron.}
-
 \item{format}{A string specifying the file format to process - xml, json}
 
 \item{lang}{A string specifying the language of result value - kr (Korean),

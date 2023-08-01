@@ -27,7 +27,7 @@ devtools::install_github("seokhoonj/ecos")
 library(ecos)
 
 # set your api key
-setKey(api_key = _your_api_token_)
+ecos.setKey(api_key = "your_api_key")
 
 # data search (if you don't know the stat_code / item_code)
 interest_rate <- statSearch()

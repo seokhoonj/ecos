@@ -4,19 +4,9 @@
 \alias{statMeta}
 \title{Retrieve statistical meta DB}
 \usage{
-statMeta(
-  api_key,
-  meta,
-  format = c("xml", "json"),
-  lang = c("kr", "en"),
-  count = 1000
-)
+statMeta(meta, format = c("xml", "json"), lang = c("kr", "en"), count = 1000)
 }
 \arguments{
-\item{api_key}{A string specifying ECOS API key. Need not be specified if
-the key was stored as an environment variable via \code{\link{setKey}} or
-.Renviron.}
-
 \item{meta}{A string specifying the name of meta DB to query}
 
 \item{format}{A string specifying the file format to process - xml, json}

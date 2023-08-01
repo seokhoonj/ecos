@@ -5,7 +5,6 @@
 \title{Item list of statistics}
 \usage{
 statItemList(
-  api_key,
   stat_code,
   format = c("xml", "json"),
   lang = c("kr", "en"),
@@ -13,10 +12,6 @@ statItemList(
 )
 }
 \arguments{
-\item{api_key}{A string specifying ECOS API key. Need not be specified if
-the key was stored as an environment variable via \code{\link{setKey}} or
-.Renviron.}
-
 \item{stat_code}{A string specifying the statistical table code}
 
 \item{format}{A string specifying the file format to process - xml, json}

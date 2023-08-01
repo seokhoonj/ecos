@@ -1,14 +1,13 @@
-#################################################################################
-## glabal variables
-#################################################################################
+
+# global variables --------------------------------------------------------
 
 utils::globalVariables(c("calendar"))
 
-#################################################################################
-## parse xml
-#################################################################################
-.parse_xml <- function(content, type = c("table", "item", "search", "meta",
-                                         "word", "keystat")) {
+
+# parse -------------------------------------------------------------------
+
+parseXML <- function(content, type = c("table", "item", "search", "meta",
+                                       "word", "keystat")) {
   type <- match.arg(type)
   xml_all <- xmlParse(content)
   if (!is.null(unlist(xpathApply(xml_all, "//RESULT")))) {
@@ -33,11 +32,8 @@ utils::globalVariables(c("calendar"))
   df
 }
 
-#################################################################################
-## parse JSON
-#################################################################################
-.parse_json <- function(content, type = c("table", "item", "search", "meta",
-                                          "word", "keystat")) {
+parseJSON <- function(content, type = c("table", "item", "search", "meta",
+                                        "word", "keystat")) {
   type <- match.arg(type)
   json_all <- fromJSON(content)
   if (!is.null(json_all$RESULT)) {
@@ -73,9 +69,9 @@ utils::globalVariables(c("calendar"))
   df
 }
 
-#################################################################################
-## print
-#################################################################################
+
+# print -------------------------------------------------------------------
+
 ##' drawLine Function
 ##'
 ##' @description draw a line
@@ -157,10 +153,10 @@ hprint <- function(x, hchar, fullcols = TRUE) {
 ##' @param lang Language of result value - kr (Korean), en (English)
 ##' @keywords internal
 ##'
-showStatTableList <- function(api_key, format = c("xml", "json"), lang = c("kr", "en")) {
+showStatTableList <- function(format = c("xml", "json"), lang = c("kr", "en")) {
   format <- match.arg(format)
   lang <- match.arg(lang)
-  df <- statTableList(api_key = api_key, format = format, lang = lang)
+  df <- statTableList(format = format, lang = lang)
   hprint(df[, c("srch_yn", "stat_code", "stat_name")])
 }
 
@@ -173,12 +169,11 @@ showStatTableList <- function(api_key, format = c("xml", "json"), lang = c("kr",
 ##' @param stat_code Statistical table code
 ##' @keywords internal
 ##'
-showStatItemList <- function(api_key, format = c("xml", "json"),
-                             lang = c("kr", "en"), stat_code) {
+showStatItemList <- function(stat_code, format = c("xml", "json"), 
+                             lang = c("kr", "en")) {
   format <- match.arg(format)
   lang <- match.arg(lang)
-  df <- statItemList(api_key = api_key, format = format,
-                     lang = lang, stat_code = stat_code)
+  df <- statItemList(format = format, lang = lang, stat_code = stat_code)
   hprint(df[, c("cycle", "item_code", "item_name")])
 }
 
@@ -203,9 +198,8 @@ orderStatSearchColumns <- function(x) {
   return(x)
 }
 
-#################################################################################
-## calendar
-#################################################################################
+
+# calendar ----------------------------------------------------------------
 
 ##' setCalendar Function
 ##'

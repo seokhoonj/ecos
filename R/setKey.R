@@ -11,26 +11,26 @@
 ##' @examples
 ##'
 ##' ## Set API Key for the current session
-##' \donttest{setKey("SetYourKey")}
+##' \donttest{ecos.setKey("your_api_key")}
 ##'
 ##' ## Check API key
-##' printKey()
+##' ecos.printKey()
 ##'
 ##' @export
-setKey <- function(api_key) {
+ecos.setKey <- function(api_key) {
   Sys.setenv(ECOS_API_KEY = api_key)
 }
 
 ##' @export
-##' @rdname setKey
-printKey <- function() {
+##' @rdname ecos.setKey
+ecos.printKey <- function() {
   Sys.getenv("ECOS_API_KEY")
 }
 
-.getKey <- function() {
-  ecos_key <- Sys.getenv("ECOS_API_KEY")
-  if (ecos_key == "") {
-    stop("Please provide your ECOS API Key", call. = FALSE)
+ecos.getKey <- function() {
+  api_key <- Sys.getenv("ECOS_API_KEY")
+  if (api_key == "") {
+    stop("Please run this code to provide your ECOS API Key: ecos.setKey('your_api_key').", call. = FALSE)
   }
-  ecos_key
+  api_key
 }

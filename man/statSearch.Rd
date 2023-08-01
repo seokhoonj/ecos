@@ -5,7 +5,6 @@
 \title{Search conditional statistics}
 \usage{
 statSearch(
-  api_key,
   stat_code,
   item_code1,
   item_code2 = "?",
@@ -20,10 +19,6 @@ statSearch(
 )
 }
 \arguments{
-\item{api_key}{A string specifying ECOS API key. Need not be specified if
-the key was stored as an environment variable via \code{\link{setKey}} or
-.Renviron.}
-
 \item{stat_code}{A string specifying the statistical table code}
 
 \item{item_code1}{A string specifying the statistical item 1 code}
