@@ -1,4 +1,4 @@
-## ecos package
+# ecos package
 
 <!-- badges: start -->
 
