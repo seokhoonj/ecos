@@ -148,7 +148,7 @@ hprint <- function(x, hchar, fullcols = TRUE) {
 ##' showStatTableList Function
 ##'
 ##' @description Show neat return object of statTableList function
-##' @param api_key Open API authentication key issued by the Bank of Korea
+## @param api_key Open API authentication key issued by the Bank of Korea
 ##' @param format File format of the result value - xml, json
 ##' @param lang Language of result value - kr (Korean), en (English)
 ##' @keywords internal
@@ -163,7 +163,7 @@ showStatTableList <- function(format = c("xml", "json"), lang = c("kr", "en")) {
 ##' showStatItemList Function
 ##'
 ##' @description Show neat return object of statItemList function
-##' @param api_key Open API authentication key issued by the Bank of Korea
+## @param api_key Open API authentication key issued by the Bank of Korea
 ##' @param format File format of the result value - xml, json
 ##' @param lang Language of result value - kr (Korean), en (English)
 ##' @param stat_code Statistical table code

@@ -12,8 +12,6 @@ showStatItemList(stat_code, format = c("xml", "json"), lang = c("kr", "en"))
 \item{format}{File format of the result value - xml, json}
 
 \item{lang}{Language of result value - kr (Korean), en (English)}
-
-\item{api_key}{Open API authentication key issued by the Bank of Korea}
 }
 \description{
 Show neat return object of statItemList function
