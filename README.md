@@ -2,8 +2,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml) 
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ecos)](https://cran.r-project.org/package=ecos)
+[![R-CMD-check](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml) [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ecos)](https://cran.r-project.org/package=ecos)
 
 <!-- badges: end -->
 
@@ -29,6 +28,9 @@ library(ecos)
 
 # set your api key
 ecos.setKey(api_key = "your_api_key")
+
+# or permanently
+usethis::edit_r_environ() # add KOSIS_API_KEY="your_api_key" in .Renviron
 
 # data search (if you don't know the stat_code / item_code)
 interest_rate <- statSearch()
