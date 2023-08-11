@@ -2,7 +2,8 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml) [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ecos)](https://cran.r-project.org/package=ecos)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ecos)](https://cran.r-project.org/package=ecos)
+[![R-CMD-check](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml) 
 
 <!-- badges: end -->
 
@@ -15,6 +16,7 @@ Economic Statistics System of Bank of Korea (Open API Service)\
 ## Installation
 
 ``` r
+# install from CRAN
 install.packages("ecos")
 
 # Alternatively
