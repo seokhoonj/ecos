@@ -2,8 +2,7 @@
 
 <!-- badges: start -->
 
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ecos)](https://cran.r-project.org/package=ecos)
-[![R-CMD-check](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml) 
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ecos)](https://cran.r-project.org/package=ecos) [![R-CMD-check](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/seokhoonj/ecos/actions/workflows/R-CMD-check.yaml)
 
 <!-- badges: end -->
 
@@ -23,7 +22,7 @@ install.packages("ecos")
 devtools::install_github("seokhoonj/ecos")  
 ```
 
-## examples
+## Examples
 
 ``` r
 library(ecos)
@@ -42,3 +41,5 @@ Please insert item_code1: US
 # or simply
 interest_rate <- statSearch(stat_code = "902Y006", item_code1 = "US", cycle = "M")
 ```
+
+An example of plot using central bank policy rate data (US) from ECOS <img src="man/figures/README-example-1.png" alt="plot using central bank policy rate data."/>
