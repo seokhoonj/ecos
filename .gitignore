@@ -1,12 +1,7 @@
-*.bak
-*.swp
-*.Rhistory
-*.RData
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
 *.zip
 *.csv
 *.xlsx
-*.png
-*.jpg
-*.jpeg
-
-.Rproj.user
