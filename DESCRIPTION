@@ -1,6 +1,6 @@
 Package: ecos
 Title: Economic Statistics System of the Bank of Korea
-Version: 0.1.5
+Version: 0.1.6
 Authors@R: c(
     person(given = "Seokhoon",
            family = "Joo",
