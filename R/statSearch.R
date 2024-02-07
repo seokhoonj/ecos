@@ -35,9 +35,9 @@ statSearch <- function(stat_code, item_code1, item_code2 = "?",
   format <- match.arg(format)
   lang <- match.arg(lang)
 	if (missing(stat_code)) {
-	  # op <- options("max.print" = .Machine$integer.max)
+	  op <- options("max.print" = .Machine$integer.max)
 	  showStatTableList(format = format, lang = lang)
-	  # on.exit(op)
+	  on.exit(op)
 	  stat_code <- readline("Please insert stat_code: ")
 	}
   item_list <- statItemList(stat_code = stat_code, format = format, lang = lang)
