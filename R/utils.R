@@ -236,17 +236,17 @@ setCalendar <- function(start = "1900-01-01", end = "2099-12-31") {
 ##'
 getCalendarTime <- function(x, cycle) {
   if (grepl("^[0-9]{4}[01][0-9][0-3][0-9]$", x, perl = TRUE)) {
-    z <- calendar[calendar$D == x,][[cycle]]
+    z <- ecos::calendar[calendar$D == x,][[cycle]]
   } else if (grepl("^[0-9]{4}[01][0-9]S[12]$", x, perl = TRUE)) {
-    z <- calendar[calendar$SM == x,][[cycle]]
+    z <- ecos::calendar[calendar$SM == x,][[cycle]]
   } else if (grepl("^[0-9]{4}[01][0-9]$", x, perl = TRUE)) {
-    z <- calendar[calendar$M == x,][[cycle]]
+    z <- ecos::calendar[calendar$M == x,][[cycle]]
   } else if (grepl("^[0-9]{4}Q[1-4]$", x, perl = TRUE)) {
-    z <- calendar[calendar$Q == x,][[cycle]]
+    z <- ecos::calendar[calendar$Q == x,][[cycle]]
   } else if (grepl("^[0-9]{4}S[12]$", x, perl = TRUE)) {
-    z <- calendar[calendar$S == x,][[cycle]]
+    z <- ecos::calendar[calendar$S == x,][[cycle]]
   } else if (grepl("^[0-9]{4}$", x, perl = TRUE)) {
-    z <- calendar[calendar$A == x,][[cycle]]
+    z <- ecos::calendar[calendar$A == x,][[cycle]]
   } else {
     stop("invalid date format")
   }
