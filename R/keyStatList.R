@@ -24,7 +24,7 @@ keyStatList <- function(format = c("xml", "json"), lang = c("kr", "en"),
     sprintf("http://ecos.bok.or.kr/api/KeyStatisticList/%s/%s/%s/1/%s/",
             api_key, format, lang, count)
   )
-  html <- GET(url)
+  html <- httr::GET(url)
   content <- rawToChar(html$content)
 	if (format == "xml") {
     parseXML(content, type = "keystat")

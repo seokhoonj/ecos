@@ -13,18 +13,21 @@
 ##' @param lang A string specifying the language of result value - kr (Korean),
 ##'   en (English)
 ##' @param count An integer specifying the number of requests
+##' @param stat_code A string specifying the statistical table code
 ##' @return A data.frame object containing queried information
 ##' @export
 statTableList <- function(format = c("xml", "json"), lang = c("kr", "en"), 
-                          count = 1000) {
+                          count = 1000, stat_code) {
   api_key <- ecos.getKey()
   format <- match.arg(format)
   lang <- match.arg(lang)
+  if (missing(stat_code)) 
+    stat_code <- ""
   url <- URLencode(
-    sprintf("http://ecos.bok.or.kr/api/StatisticTableList/%s/%s/%s/1/%s/?",
-            api_key, format, lang, count)
+    sprintf("https://ecos.bok.or.kr/api/StatisticTableList/%s/%s/%s/1/%s/%s",
+            api_key, format, lang, count, stat_code)
   )
-  html <- GET(url)
+  html <- httr::GET(url)
   content <- rawToChar(html$content)
 	if (format == "xml") {
     parseXML(content, type = "table")

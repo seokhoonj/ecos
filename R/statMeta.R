@@ -26,7 +26,7 @@ statMeta <- function(meta, format = c("xml", "json"), lang = c("kr", "en"),
     sprintf("http://ecos.bok.or.kr/api/StatisticMeta/%s/%s/%s/1/%s/%s/",
             api_key, format, lang, count, meta)
   )
-  html <- GET(url)
+  html <- httr::GET(url)
   content <- rawToChar(html$content)
 	if (format == "xml") {
     parseXML(content, type = "meta")

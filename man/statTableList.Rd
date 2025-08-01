@@ -4,7 +4,12 @@
 \alias{statTableList}
 \title{Table list of statistical tables}
 \usage{
-statTableList(format = c("xml", "json"), lang = c("kr", "en"), count = 1000)
+statTableList(
+  format = c("xml", "json"),
+  lang = c("kr", "en"),
+  count = 1000,
+  stat_code
+)
 }
 \arguments{
 \item{format}{A string specifying the file format to process - xml, json}
@@ -13,6 +18,8 @@ statTableList(format = c("xml", "json"), lang = c("kr", "en"), count = 1000)
 en (English)}
 
 \item{count}{An integer specifying the number of requests}
+
+\item{stat_code}{A string specifying the statistical table code}
 }
 \value{
 A data.frame object containing queried information
